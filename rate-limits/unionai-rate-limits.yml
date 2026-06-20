@@ -1,0 +1,68 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Union.ai
+providerId: unionai
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- AI
+- ML
+- Orchestration
+- Workflows
+- Serverless
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The Union / Flyte control plane (FlyteAdmin) governs work primarily through
+  concurrency limits rather than published per-second API rate limits. The most
+  visible quota is concurrent actions (the number of task actions a tenant can
+  run simultaneously) - the Team plan documents a ceiling on the order of 1,000
+  concurrent actions, with Enterprise plans negotiated far higher (50,000+).
+  FlyteAdmin also applies pagination limits/tokens on its list endpoints and
+  standard gRPC/HTTP error handling. Specific per-endpoint request rates are
+  not published and are not reconciled in this artifact.
+notes: >-
+  Verify concurrent-action ceilings, list pagination limits, and any gateway
+  request-rate throttling against the Union.ai pricing page and FlyteAdmin
+  deployment configuration at reconciliation. Self-hosted open-source Flyte
+  limits are operator-configured.
+sources:
+- https://www.union.ai/pricing
+- https://www.union.ai/docs/flyte/api-reference/
+- https://www.union.ai/docs/flyte/architecture/component-architecture/
+responseCodes:
+  throttled: 429
+limits:
+- name: Concurrent Actions
+  scope: tenant
+  metric: actions
+  limit: ~1,000 (Team); 50,000+ negotiated (Enterprise)
+  notes: Maximum task actions running simultaneously; primary throughput governor.
+- name: List Pagination Limit
+  scope: request
+  metric: results
+  limit: see provider documentation
+  notes: List endpoints accept a `limit` and return an opaque `token` for the next page.
+- name: Data Retention
+  scope: tenant
+  metric: days
+  limit: 30 (Team) / 365 (Enterprise)
+  notes: Execution and metadata retention window, not a request rate but a stored-data quota.
+- name: Clusters
+  scope: tenant
+  metric: clusters
+  limit: 1 (Team) / 3+ (Enterprise)
+  notes: Number of compute clusters attached to the control plane.
+policies:
+- name: Concurrency Governing
+  description: Throughput is shaped by concurrent-action ceilings per plan rather than fixed RPM/TPM caps.
+- name: Pagination
+  description: Use the returned token and a sane limit when listing projects, workflows, tasks, launch plans, and executions.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter on 429/503 and honor Retry-After when present.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

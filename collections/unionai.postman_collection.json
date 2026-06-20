@@ -1,0 +1,86 @@
+{
+  "item": [
+    {
+      "name": "Projects",
+      "description": { "content": "Projects and domains - the top-level grouping for all control-plane entities.", "type": "text/plain" },
+      "item": [
+        { "name": "List projects", "request": { "name": "List projects", "url": { "raw": "{{baseUrl}}/api/v1/projects", "host": ["{{baseUrl}}"], "path": ["api","v1","projects"] }, "method": "GET", "header": [{ "key": "Accept", "value": "application/json" }] } },
+        { "name": "Register project", "request": { "name": "Register project", "url": { "raw": "{{baseUrl}}/api/v1/projects", "host": ["{{baseUrl}}"], "path": ["api","v1","projects"] }, "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}" } } },
+        { "name": "Get project", "request": { "name": "Get project", "url": { "raw": "{{baseUrl}}/api/v1/projects/:id", "host": ["{{baseUrl}}"], "path": ["api","v1","projects",":id"], "variable": [{ "key": "id" }] }, "method": "GET", "header": [] } },
+        { "name": "Update project", "request": { "name": "Update project", "url": { "raw": "{{baseUrl}}/api/v1/projects/:id", "host": ["{{baseUrl}}"], "path": ["api","v1","projects",":id"], "variable": [{ "key": "id" }] }, "method": "PUT", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}" } } },
+        { "name": "List domains", "request": { "name": "List domains", "url": { "raw": "{{baseUrl}}/api/v1/domains", "host": ["{{baseUrl}}"], "path": ["api","v1","domains"] }, "method": "GET", "header": [] } }
+      ]
+    },
+    {
+      "name": "Tasks",
+      "description": { "content": "Register and query versioned tasks.", "type": "text/plain" },
+      "item": [
+        { "name": "Create task", "request": { "name": "Create task", "url": { "raw": "{{baseUrl}}/api/v1/tasks", "host": ["{{baseUrl}}"], "path": ["api","v1","tasks"] }, "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}" } } },
+        { "name": "List task ids", "request": { "name": "List task ids", "url": { "raw": "{{baseUrl}}/api/v1/task_ids/:project/:domain", "host": ["{{baseUrl}}"], "path": ["api","v1","task_ids",":project",":domain"], "variable": [{ "key": "project" },{ "key": "domain" }] }, "method": "GET", "header": [] } },
+        { "name": "List task versions", "request": { "name": "List task versions", "url": { "raw": "{{baseUrl}}/api/v1/tasks/:project/:domain/:name", "host": ["{{baseUrl}}"], "path": ["api","v1","tasks",":project",":domain",":name"], "variable": [{ "key": "project" },{ "key": "domain" },{ "key": "name" }] }, "method": "GET", "header": [] } },
+        { "name": "Get task", "request": { "name": "Get task", "url": { "raw": "{{baseUrl}}/api/v1/tasks/:project/:domain/:name/:version", "host": ["{{baseUrl}}"], "path": ["api","v1","tasks",":project",":domain",":name",":version"], "variable": [{ "key": "project" },{ "key": "domain" },{ "key": "name" },{ "key": "version" }] }, "method": "GET", "header": [] } }
+      ]
+    },
+    {
+      "name": "Workflows",
+      "description": { "content": "Register and query versioned workflows (compiled DAGs).", "type": "text/plain" },
+      "item": [
+        { "name": "Create workflow", "request": { "name": "Create workflow", "url": { "raw": "{{baseUrl}}/api/v1/workflows", "host": ["{{baseUrl}}"], "path": ["api","v1","workflows"] }, "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}" } } },
+        { "name": "List workflow ids", "request": { "name": "List workflow ids", "url": { "raw": "{{baseUrl}}/api/v1/workflow_ids/:project/:domain", "host": ["{{baseUrl}}"], "path": ["api","v1","workflow_ids",":project",":domain"], "variable": [{ "key": "project" },{ "key": "domain" }] }, "method": "GET", "header": [] } },
+        { "name": "List workflow versions", "request": { "name": "List workflow versions", "url": { "raw": "{{baseUrl}}/api/v1/workflows/:project/:domain/:name", "host": ["{{baseUrl}}"], "path": ["api","v1","workflows",":project",":domain",":name"], "variable": [{ "key": "project" },{ "key": "domain" },{ "key": "name" }] }, "method": "GET", "header": [] } },
+        { "name": "Get workflow", "request": { "name": "Get workflow", "url": { "raw": "{{baseUrl}}/api/v1/workflows/:project/:domain/:name/:version", "host": ["{{baseUrl}}"], "path": ["api","v1","workflows",":project",":domain",":name",":version"], "variable": [{ "key": "project" },{ "key": "domain" },{ "key": "name" },{ "key": "version" }] }, "method": "GET", "header": [] } }
+      ]
+    },
+    {
+      "name": "Launch Plans",
+      "description": { "content": "Create, schedule, and query launch plans.", "type": "text/plain" },
+      "item": [
+        { "name": "Create launch plan", "request": { "name": "Create launch plan", "url": { "raw": "{{baseUrl}}/api/v1/launch_plans", "host": ["{{baseUrl}}"], "path": ["api","v1","launch_plans"] }, "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}" } } },
+        { "name": "List launch plan ids", "request": { "name": "List launch plan ids", "url": { "raw": "{{baseUrl}}/api/v1/launch_plan_ids/:project/:domain", "host": ["{{baseUrl}}"], "path": ["api","v1","launch_plan_ids",":project",":domain"], "variable": [{ "key": "project" },{ "key": "domain" }] }, "method": "GET", "header": [] } },
+        { "name": "List launch plan versions", "request": { "name": "List launch plan versions", "url": { "raw": "{{baseUrl}}/api/v1/launch_plans/:project/:domain/:name", "host": ["{{baseUrl}}"], "path": ["api","v1","launch_plans",":project",":domain",":name"], "variable": [{ "key": "project" },{ "key": "domain" },{ "key": "name" }] }, "method": "GET", "header": [] } },
+        { "name": "Get launch plan", "request": { "name": "Get launch plan", "url": { "raw": "{{baseUrl}}/api/v1/launch_plans/:project/:domain/:name/:version", "host": ["{{baseUrl}}"], "path": ["api","v1","launch_plans",":project",":domain",":name",":version"], "variable": [{ "key": "project" },{ "key": "domain" },{ "key": "name" },{ "key": "version" }] }, "method": "GET", "header": [] } },
+        { "name": "Update launch plan state", "request": { "name": "Update launch plan state", "url": { "raw": "{{baseUrl}}/api/v1/launch_plans/:project/:domain/:name/:version", "host": ["{{baseUrl}}"], "path": ["api","v1","launch_plans",":project",":domain",":name",":version"], "variable": [{ "key": "project" },{ "key": "domain" },{ "key": "name" },{ "key": "version" }] }, "method": "PUT", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}" } } },
+        { "name": "List active launch plans", "request": { "name": "List active launch plans", "url": { "raw": "{{baseUrl}}/api/v1/active_launch_plans/:project/:domain", "host": ["{{baseUrl}}"], "path": ["api","v1","active_launch_plans",":project",":domain"], "variable": [{ "key": "project" },{ "key": "domain" }] }, "method": "GET", "header": [] } }
+      ]
+    },
+    {
+      "name": "Executions",
+      "description": { "content": "Launch, manage, and inspect workflow executions and their node executions.", "type": "text/plain" },
+      "item": [
+        { "name": "Create execution", "request": { "name": "Create execution", "url": { "raw": "{{baseUrl}}/api/v1/executions", "host": ["{{baseUrl}}"], "path": ["api","v1","executions"] }, "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}" } } },
+        { "name": "Relaunch execution", "request": { "name": "Relaunch execution", "url": { "raw": "{{baseUrl}}/api/v1/executions/relaunch", "host": ["{{baseUrl}}"], "path": ["api","v1","executions","relaunch"] }, "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}" } } },
+        { "name": "Recover execution", "request": { "name": "Recover execution", "url": { "raw": "{{baseUrl}}/api/v1/executions/recover", "host": ["{{baseUrl}}"], "path": ["api","v1","executions","recover"] }, "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{}" } } },
+        { "name": "List executions", "request": { "name": "List executions", "url": { "raw": "{{baseUrl}}/api/v1/executions/:project/:domain", "host": ["{{baseUrl}}"], "path": ["api","v1","executions",":project",":domain"], "variable": [{ "key": "project" },{ "key": "domain" }] }, "method": "GET", "header": [] } },
+        { "name": "Get execution", "request": { "name": "Get execution", "url": { "raw": "{{baseUrl}}/api/v1/executions/:project/:domain/:name", "host": ["{{baseUrl}}"], "path": ["api","v1","executions",":project",":domain",":name"], "variable": [{ "key": "project" },{ "key": "domain" },{ "key": "name" }] }, "method": "GET", "header": [] } },
+        { "name": "Terminate execution", "request": { "name": "Terminate execution", "url": { "raw": "{{baseUrl}}/api/v1/executions/:project/:domain/:name", "host": ["{{baseUrl}}"], "path": ["api","v1","executions",":project",":domain",":name"], "variable": [{ "key": "project" },{ "key": "domain" },{ "key": "name" }] }, "method": "DELETE", "header": [] } },
+        { "name": "Get execution data", "request": { "name": "Get execution data", "url": { "raw": "{{baseUrl}}/api/v1/data/executions/:project/:domain/:name", "host": ["{{baseUrl}}"], "path": ["api","v1","data","executions",":project",":domain",":name"], "variable": [{ "key": "project" },{ "key": "domain" },{ "key": "name" }] }, "method": "GET", "header": [] } },
+        { "name": "List node executions", "request": { "name": "List node executions", "url": { "raw": "{{baseUrl}}/api/v1/node_executions/:project/:domain/:name", "host": ["{{baseUrl}}"], "path": ["api","v1","node_executions",":project",":domain",":name"], "variable": [{ "key": "project" },{ "key": "domain" },{ "key": "name" }] }, "method": "GET", "header": [] } }
+      ]
+    },
+    {
+      "name": "Version",
+      "description": { "content": "Control plane version.", "type": "text/plain" },
+      "item": [
+        { "name": "Get version", "request": { "name": "Get version", "url": { "raw": "{{baseUrl}}/api/v1/version", "host": ["{{baseUrl}}"], "path": ["api","v1","version"] }, "method": "GET", "header": [] } }
+      ]
+    }
+  ],
+  "variable": [
+    { "type": "string", "value": "https://your-org.app.union.ai", "key": "baseUrl" }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      { "key": "token", "value": "{{bearerToken}}" }
+    ]
+  },
+  "info": {
+    "_postman_id": "8c2f1a90-3b4d-4f7e-9a21-7d3c5e9b1f04",
+    "name": "Union FlyteAdmin Control Plane API (HTTP/JSON Gateway)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "HTTP/JSON gateway for the Union.ai / Flyte control plane (FlyteIDL AdminService). The control plane is primarily gRPC; this REST gateway is generated with grpc-gateway and maps each gRPC method to an HTTP endpoint under /api/v1/. Auth is OAuth2 (PKCE / client credentials) with a Bearer access token. Set baseUrl to your tenant (https://<org>.app.union.ai or https://serverless.union.ai).",
+      "type": "text/plain"
+    }
+  }
+}

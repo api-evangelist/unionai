@@ -1,0 +1,73 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Union FlyteAdmin Control Plane API (HTTP/JSON Gateway)",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": { "name": "Projects", "type": "folder" },
+      "items": [
+        { "info": { "name": "List projects", "type": "http" }, "http": { "method": "GET", "url": "{{baseUrl}}/api/v1/projects" }, "docs": "List registered projects." },
+        { "info": { "name": "Register project", "type": "http" }, "http": { "method": "POST", "url": "{{baseUrl}}/api/v1/projects", "body": { "type": "json", "data": "{}" } }, "docs": "Register a new project." },
+        { "info": { "name": "Get project", "type": "http" }, "http": { "method": "GET", "url": "{{baseUrl}}/api/v1/projects/{{id}}" }, "docs": "Get a single project by id." },
+        { "info": { "name": "Update project", "type": "http" }, "http": { "method": "PUT", "url": "{{baseUrl}}/api/v1/projects/{{id}}", "body": { "type": "json", "data": "{}" } }, "docs": "Update an existing project." },
+        { "info": { "name": "List domains", "type": "http" }, "http": { "method": "GET", "url": "{{baseUrl}}/api/v1/domains" }, "docs": "List the domains (development, staging, production)." }
+      ]
+    },
+    {
+      "info": { "name": "Tasks", "type": "folder" },
+      "items": [
+        { "info": { "name": "Create task", "type": "http" }, "http": { "method": "POST", "url": "{{baseUrl}}/api/v1/tasks", "body": { "type": "json", "data": "{}" } }, "docs": "Register a versioned task." },
+        { "info": { "name": "List task ids", "type": "http" }, "http": { "method": "GET", "url": "{{baseUrl}}/api/v1/task_ids/{{project}}/{{domain}}" }, "docs": "List task names in a project/domain." },
+        { "info": { "name": "List task versions", "type": "http" }, "http": { "method": "GET", "url": "{{baseUrl}}/api/v1/tasks/{{project}}/{{domain}}/{{name}}" }, "docs": "List versions of a task." },
+        { "info": { "name": "Get task", "type": "http" }, "http": { "method": "GET", "url": "{{baseUrl}}/api/v1/tasks/{{project}}/{{domain}}/{{name}}/{{version}}" }, "docs": "Get a single versioned task." }
+      ]
+    },
+    {
+      "info": { "name": "Workflows", "type": "folder" },
+      "items": [
+        { "info": { "name": "Create workflow", "type": "http" }, "http": { "method": "POST", "url": "{{baseUrl}}/api/v1/workflows", "body": { "type": "json", "data": "{}" } }, "docs": "Register a versioned workflow." },
+        { "info": { "name": "List workflow ids", "type": "http" }, "http": { "method": "GET", "url": "{{baseUrl}}/api/v1/workflow_ids/{{project}}/{{domain}}" }, "docs": "List workflow names in a project/domain." },
+        { "info": { "name": "List workflow versions", "type": "http" }, "http": { "method": "GET", "url": "{{baseUrl}}/api/v1/workflows/{{project}}/{{domain}}/{{name}}" }, "docs": "List versions of a workflow." },
+        { "info": { "name": "Get workflow", "type": "http" }, "http": { "method": "GET", "url": "{{baseUrl}}/api/v1/workflows/{{project}}/{{domain}}/{{name}}/{{version}}" }, "docs": "Get a single versioned workflow." }
+      ]
+    },
+    {
+      "info": { "name": "Launch Plans", "type": "folder" },
+      "items": [
+        { "info": { "name": "Create launch plan", "type": "http" }, "http": { "method": "POST", "url": "{{baseUrl}}/api/v1/launch_plans", "body": { "type": "json", "data": "{}" } }, "docs": "Create a versioned launch plan." },
+        { "info": { "name": "List launch plan ids", "type": "http" }, "http": { "method": "GET", "url": "{{baseUrl}}/api/v1/launch_plan_ids/{{project}}/{{domain}}" }, "docs": "List launch plan names in a project/domain." },
+        { "info": { "name": "List launch plan versions", "type": "http" }, "http": { "method": "GET", "url": "{{baseUrl}}/api/v1/launch_plans/{{project}}/{{domain}}/{{name}}" }, "docs": "List versions of a launch plan." },
+        { "info": { "name": "Get launch plan", "type": "http" }, "http": { "method": "GET", "url": "{{baseUrl}}/api/v1/launch_plans/{{project}}/{{domain}}/{{name}}/{{version}}" }, "docs": "Get a single versioned launch plan." },
+        { "info": { "name": "Update launch plan state", "type": "http" }, "http": { "method": "PUT", "url": "{{baseUrl}}/api/v1/launch_plans/{{project}}/{{domain}}/{{name}}/{{version}}", "body": { "type": "json", "data": "{}" } }, "docs": "Activate or deactivate a launch plan (scheduling)." },
+        { "info": { "name": "List active launch plans", "type": "http" }, "http": { "method": "GET", "url": "{{baseUrl}}/api/v1/active_launch_plans/{{project}}/{{domain}}" }, "docs": "List the active (scheduled) launch plans." }
+      ]
+    },
+    {
+      "info": { "name": "Executions", "type": "folder" },
+      "items": [
+        { "info": { "name": "Create execution", "type": "http" }, "http": { "method": "POST", "url": "{{baseUrl}}/api/v1/executions", "body": { "type": "json", "data": "{}" } }, "docs": "Launch a workflow execution from a launch plan." },
+        { "info": { "name": "Relaunch execution", "type": "http" }, "http": { "method": "POST", "url": "{{baseUrl}}/api/v1/executions/relaunch", "body": { "type": "json", "data": "{}" } }, "docs": "Relaunch a previously created execution." },
+        { "info": { "name": "Recover execution", "type": "http" }, "http": { "method": "POST", "url": "{{baseUrl}}/api/v1/executions/recover", "body": { "type": "json", "data": "{}" } }, "docs": "Recover a failed execution." },
+        { "info": { "name": "List executions", "type": "http" }, "http": { "method": "GET", "url": "{{baseUrl}}/api/v1/executions/{{project}}/{{domain}}" }, "docs": "List executions in a project/domain." },
+        { "info": { "name": "Get execution", "type": "http" }, "http": { "method": "GET", "url": "{{baseUrl}}/api/v1/executions/{{project}}/{{domain}}/{{name}}" }, "docs": "Get a single workflow execution." },
+        { "info": { "name": "Terminate execution", "type": "http" }, "http": { "method": "DELETE", "url": "{{baseUrl}}/api/v1/executions/{{project}}/{{domain}}/{{name}}" }, "docs": "Terminate a running execution." },
+        { "info": { "name": "Get execution data", "type": "http" }, "http": { "method": "GET", "url": "{{baseUrl}}/api/v1/data/executions/{{project}}/{{domain}}/{{name}}" }, "docs": "Get input/output data URLs for an execution." },
+        { "info": { "name": "List node executions", "type": "http" }, "http": { "method": "GET", "url": "{{baseUrl}}/api/v1/node_executions/{{project}}/{{domain}}/{{name}}" }, "docs": "List node executions for a workflow execution." }
+      ]
+    },
+    {
+      "info": { "name": "Version", "type": "folder" },
+      "items": [
+        { "info": { "name": "Get version", "type": "http" }, "http": { "method": "GET", "url": "{{baseUrl}}/api/v1/version" }, "docs": "Get the FlyteAdmin control plane version." }
+      ]
+    }
+  ]
+}

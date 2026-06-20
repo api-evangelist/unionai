@@ -1,0 +1,440 @@
+openapi: 3.0.1
+info:
+  title: Union FlyteAdmin Control Plane API (HTTP/JSON Gateway)
+  description: >-
+    Conservative model of the documented HTTP/JSON gateway exposed by the
+    Union.ai / Flyte control plane (the FlyteIDL AdminService). The control
+    plane is primarily a gRPC service; an HTTP/JSON REST gateway is generated
+    automatically with grpc-gateway, mapping each gRPC method to an HTTP
+    endpoint under /api/v1/. Paths and methods below are taken from the public
+    FlyteIDL admin service google.api.http annotations. Request/response
+    bodies are modeled loosely (object) because the gRPC<->JSON mapping of the
+    full protobuf message tree is large and not maintained as a hand-authored
+    OpenAPI contract by the vendor.
+  termsOfService: https://www.union.ai/legal/terms-of-service
+  contact:
+    name: Union.ai
+    url: https://www.union.ai/contact
+  license:
+    name: Apache 2.0 (Flyte / FlyteIDL)
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+  - url: https://{org}.app.union.ai
+    description: Union BYOC / managed control plane (replace {org} with your tenant).
+    variables:
+      org:
+        default: your-org
+  - url: https://serverless.union.ai
+    description: Union Serverless control plane.
+tags:
+  - name: Projects
+  - name: Domains
+  - name: Tasks
+  - name: Workflows
+  - name: Launch Plans
+  - name: Executions
+  - name: Node Executions
+  - name: Task Executions
+  - name: Version
+paths:
+  /api/v1/projects:
+    get:
+      operationId: listProjects
+      tags: [Projects]
+      summary: List registered projects.
+      parameters:
+        - { $ref: '#/components/parameters/Limit' }
+        - { $ref: '#/components/parameters/Token' }
+        - { $ref: '#/components/parameters/Filters' }
+        - { $ref: '#/components/parameters/SortBy' }
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+    post:
+      operationId: registerProject
+      tags: [Projects]
+      summary: Register a new project.
+      requestBody: { $ref: '#/components/requestBodies/Generic' }
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+  /api/v1/projects/{id}:
+    get:
+      operationId: getProject
+      tags: [Projects]
+      summary: Get a single project by id.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+    put:
+      operationId: updateProject
+      tags: [Projects]
+      summary: Update an existing project.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema: { type: string }
+      requestBody: { $ref: '#/components/requestBodies/Generic' }
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+  /api/v1/domains:
+    get:
+      operationId: listDomains
+      tags: [Domains]
+      summary: List the domains (e.g. development, staging, production).
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+  /api/v1/tasks:
+    post:
+      operationId: createTask
+      tags: [Tasks]
+      summary: Register a versioned task.
+      requestBody: { $ref: '#/components/requestBodies/Generic' }
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+  /api/v1/task_ids/{project}/{domain}:
+    get:
+      operationId: listTaskIds
+      tags: [Tasks]
+      summary: List task names (identifiers) in a project/domain.
+      parameters:
+        - { $ref: '#/components/parameters/PathProject' }
+        - { $ref: '#/components/parameters/PathDomain' }
+        - { $ref: '#/components/parameters/Limit' }
+        - { $ref: '#/components/parameters/Token' }
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+  /api/v1/tasks/{project}/{domain}/{name}:
+    get:
+      operationId: listTasks
+      tags: [Tasks]
+      summary: List versions of a task.
+      parameters:
+        - { $ref: '#/components/parameters/PathProject' }
+        - { $ref: '#/components/parameters/PathDomain' }
+        - { $ref: '#/components/parameters/PathName' }
+        - { $ref: '#/components/parameters/Limit' }
+        - { $ref: '#/components/parameters/Token' }
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+  /api/v1/tasks/{project}/{domain}/{name}/{version}:
+    get:
+      operationId: getTask
+      tags: [Tasks]
+      summary: Get a single versioned task.
+      parameters:
+        - { $ref: '#/components/parameters/PathProject' }
+        - { $ref: '#/components/parameters/PathDomain' }
+        - { $ref: '#/components/parameters/PathName' }
+        - { $ref: '#/components/parameters/PathVersion' }
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+  /api/v1/workflows:
+    post:
+      operationId: createWorkflow
+      tags: [Workflows]
+      summary: Register a versioned workflow.
+      requestBody: { $ref: '#/components/requestBodies/Generic' }
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+  /api/v1/workflow_ids/{project}/{domain}:
+    get:
+      operationId: listWorkflowIds
+      tags: [Workflows]
+      summary: List workflow names in a project/domain.
+      parameters:
+        - { $ref: '#/components/parameters/PathProject' }
+        - { $ref: '#/components/parameters/PathDomain' }
+        - { $ref: '#/components/parameters/Limit' }
+        - { $ref: '#/components/parameters/Token' }
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+  /api/v1/workflows/{project}/{domain}/{name}:
+    get:
+      operationId: listWorkflows
+      tags: [Workflows]
+      summary: List versions of a workflow.
+      parameters:
+        - { $ref: '#/components/parameters/PathProject' }
+        - { $ref: '#/components/parameters/PathDomain' }
+        - { $ref: '#/components/parameters/PathName' }
+        - { $ref: '#/components/parameters/Limit' }
+        - { $ref: '#/components/parameters/Token' }
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+  /api/v1/workflows/{project}/{domain}/{name}/{version}:
+    get:
+      operationId: getWorkflow
+      tags: [Workflows]
+      summary: Get a single versioned workflow.
+      parameters:
+        - { $ref: '#/components/parameters/PathProject' }
+        - { $ref: '#/components/parameters/PathDomain' }
+        - { $ref: '#/components/parameters/PathName' }
+        - { $ref: '#/components/parameters/PathVersion' }
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+  /api/v1/launch_plans:
+    post:
+      operationId: createLaunchPlan
+      tags: [Launch Plans]
+      summary: Create a versioned launch plan.
+      requestBody: { $ref: '#/components/requestBodies/Generic' }
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+  /api/v1/launch_plan_ids/{project}/{domain}:
+    get:
+      operationId: listLaunchPlanIds
+      tags: [Launch Plans]
+      summary: List launch plan names in a project/domain.
+      parameters:
+        - { $ref: '#/components/parameters/PathProject' }
+        - { $ref: '#/components/parameters/PathDomain' }
+        - { $ref: '#/components/parameters/Limit' }
+        - { $ref: '#/components/parameters/Token' }
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+  /api/v1/launch_plans/{project}/{domain}/{name}:
+    get:
+      operationId: listLaunchPlans
+      tags: [Launch Plans]
+      summary: List versions of a launch plan.
+      parameters:
+        - { $ref: '#/components/parameters/PathProject' }
+        - { $ref: '#/components/parameters/PathDomain' }
+        - { $ref: '#/components/parameters/PathName' }
+        - { $ref: '#/components/parameters/Limit' }
+        - { $ref: '#/components/parameters/Token' }
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+  /api/v1/launch_plans/{project}/{domain}/{name}/{version}:
+    get:
+      operationId: getLaunchPlan
+      tags: [Launch Plans]
+      summary: Get a single versioned launch plan.
+      parameters:
+        - { $ref: '#/components/parameters/PathProject' }
+        - { $ref: '#/components/parameters/PathDomain' }
+        - { $ref: '#/components/parameters/PathName' }
+        - { $ref: '#/components/parameters/PathVersion' }
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+    put:
+      operationId: updateLaunchPlan
+      tags: [Launch Plans]
+      summary: Update a launch plan's state (ACTIVE / INACTIVE) to schedule it.
+      parameters:
+        - { $ref: '#/components/parameters/PathProject' }
+        - { $ref: '#/components/parameters/PathDomain' }
+        - { $ref: '#/components/parameters/PathName' }
+        - { $ref: '#/components/parameters/PathVersion' }
+      requestBody: { $ref: '#/components/requestBodies/Generic' }
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+  /api/v1/active_launch_plans/{project}/{domain}:
+    get:
+      operationId: listActiveLaunchPlans
+      tags: [Launch Plans]
+      summary: List the active (scheduled) launch plans in a project/domain.
+      parameters:
+        - { $ref: '#/components/parameters/PathProject' }
+        - { $ref: '#/components/parameters/PathDomain' }
+        - { $ref: '#/components/parameters/Limit' }
+        - { $ref: '#/components/parameters/Token' }
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+  /api/v1/executions:
+    post:
+      operationId: createExecution
+      tags: [Executions]
+      summary: Launch a workflow execution from a launch plan.
+      requestBody: { $ref: '#/components/requestBodies/Generic' }
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+  /api/v1/executions/relaunch:
+    post:
+      operationId: relaunchExecution
+      tags: [Executions]
+      summary: Relaunch a previously created execution.
+      requestBody: { $ref: '#/components/requestBodies/Generic' }
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+  /api/v1/executions/recover:
+    post:
+      operationId: recoverExecution
+      tags: [Executions]
+      summary: Recover a failed execution from the last known successful point.
+      requestBody: { $ref: '#/components/requestBodies/Generic' }
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+  /api/v1/executions/{project}/{domain}:
+    get:
+      operationId: listExecutions
+      tags: [Executions]
+      summary: List executions in a project/domain.
+      parameters:
+        - { $ref: '#/components/parameters/PathProject' }
+        - { $ref: '#/components/parameters/PathDomain' }
+        - { $ref: '#/components/parameters/Limit' }
+        - { $ref: '#/components/parameters/Token' }
+        - { $ref: '#/components/parameters/Filters' }
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+  /api/v1/executions/{project}/{domain}/{name}:
+    get:
+      operationId: getExecution
+      tags: [Executions]
+      summary: Get a single workflow execution.
+      parameters:
+        - { $ref: '#/components/parameters/PathProject' }
+        - { $ref: '#/components/parameters/PathDomain' }
+        - { $ref: '#/components/parameters/PathName' }
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+    put:
+      operationId: updateExecution
+      tags: [Executions]
+      summary: Update execution metadata (e.g. state).
+      parameters:
+        - { $ref: '#/components/parameters/PathProject' }
+        - { $ref: '#/components/parameters/PathDomain' }
+        - { $ref: '#/components/parameters/PathName' }
+      requestBody: { $ref: '#/components/requestBodies/Generic' }
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+    delete:
+      operationId: terminateExecution
+      tags: [Executions]
+      summary: Terminate a running execution.
+      parameters:
+        - { $ref: '#/components/parameters/PathProject' }
+        - { $ref: '#/components/parameters/PathDomain' }
+        - { $ref: '#/components/parameters/PathName' }
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+  /api/v1/data/executions/{project}/{domain}/{name}:
+    get:
+      operationId: getExecutionData
+      tags: [Executions]
+      summary: Get input/output data URLs for an execution.
+      parameters:
+        - { $ref: '#/components/parameters/PathProject' }
+        - { $ref: '#/components/parameters/PathDomain' }
+        - { $ref: '#/components/parameters/PathName' }
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+  /api/v1/node_executions/{project}/{domain}/{name}:
+    get:
+      operationId: listNodeExecutions
+      tags: [Node Executions]
+      summary: List the node executions for a workflow execution.
+      parameters:
+        - { $ref: '#/components/parameters/PathProject' }
+        - { $ref: '#/components/parameters/PathDomain' }
+        - { $ref: '#/components/parameters/PathName' }
+        - { $ref: '#/components/parameters/Limit' }
+        - { $ref: '#/components/parameters/Token' }
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+  /api/v1/version:
+    get:
+      operationId: getVersion
+      tags: [Version]
+      summary: Get the FlyteAdmin control plane version.
+      responses:
+        '200': { $ref: '#/components/responses/OK' }
+components:
+  parameters:
+    PathProject:
+      name: project
+      in: path
+      required: true
+      schema: { type: string }
+    PathDomain:
+      name: domain
+      in: path
+      required: true
+      schema: { type: string }
+    PathName:
+      name: name
+      in: path
+      required: true
+      schema: { type: string }
+    PathVersion:
+      name: version
+      in: path
+      required: true
+      schema: { type: string }
+    Limit:
+      name: limit
+      in: query
+      required: false
+      schema: { type: integer, format: int32 }
+      description: Maximum number of results to return for this page.
+    Token:
+      name: token
+      in: query
+      required: false
+      schema: { type: string }
+      description: Opaque pagination token returned by the previous page.
+    Filters:
+      name: filters
+      in: query
+      required: false
+      schema: { type: string }
+      description: FlyteAdmin filter expression (e.g. eq(execution.phase,RUNNING)).
+    SortBy:
+      name: sort_by.key
+      in: query
+      required: false
+      schema: { type: string }
+      description: Field key to sort the result set by.
+  requestBodies:
+    Generic:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            description: >-
+              JSON projection of the corresponding FlyteIDL protobuf request
+              message. See the FlyteIDL admin protos for the exact field tree.
+  responses:
+    OK:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            description: >-
+              JSON projection of the corresponding FlyteIDL protobuf response
+              message.
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: >-
+        FlyteAdmin secures client connections with OAuth2. Interactive CLI/UI
+        clients use the Authorization Code + PKCE flow; machine clients use the
+        Client Credentials flow. User authentication to the console is via
+        OpenID Connect. Tokens are presented as a Bearer access token.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://{org}.app.union.ai/oauth2/authorize
+          tokenUrl: https://{org}.app.union.ai/oauth2/token
+          scopes:
+            all: Full control-plane access.
+        clientCredentials:
+          tokenUrl: https://{org}.app.union.ai/oauth2/token
+          scopes:
+            all: Full control-plane access.
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - OAuth2: [all]
+  - BearerAuth: []

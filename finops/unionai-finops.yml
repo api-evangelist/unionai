@@ -1,0 +1,116 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Union.ai
+providerId: unionai
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- AI
+- ML
+- Orchestration
+- Workflows
+- Serverless
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Union.ai spend. Union bills usage-based pricing for the managed
+  orchestration plus the action-allocated compute (CPU, Memory, GPU) each
+  workflow consumes, metered per second and never for idle capacity. The headline
+  meters are actions and per-second vCPU-hours, GB-hours, and GPU-hours. The
+  open-source Flyte engine itself is free (Apache-2.0); only the managed Union
+  platform and the underlying cloud compute incur charges. Enterprise / BYOC
+  terms are negotiated and largely unpublished, so this artifact is not
+  reconciled.
+notes: >-
+  Per-second resource rates and action pricing change; verify against the
+  Union.ai pricing page during reconciliation. In BYOC deployments the raw
+  cloud-compute cost lands on the customer's own cloud bill, separate from the
+  Union platform fee - allocate both when modeling total cost.
+sources:
+- https://www.union.ai/pricing
+- https://www.union.ai/blog-post/introducing-union-serverless
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Union.ai
+serviceCategory: AI and Machine Learning
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Union Serverless
+  ServiceCategory: AI and Machine Learning
+  ProviderName: Union.ai
+  PublisherName: Union.ai
+  InvoiceIssuerName: Union.ai
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: actions
+  description: Task actions executed by workflows, billed per action.
+  unit: actions
+  aggregation: sum
+  dimensions:
+  - tenant
+  - project
+  - domain
+  - workflow
+- name: vcpu_hours
+  description: Allocated vCPU time across action containers, metered per second.
+  unit: vcpu_hours
+  aggregation: sum
+  dimensions:
+  - tenant
+  - project
+  - domain
+  - task
+- name: memory_gb_hours
+  description: Allocated memory across action containers, metered per second.
+  unit: gb_hours
+  aggregation: sum
+  dimensions:
+  - tenant
+  - project
+  - domain
+  - task
+- name: gpu_hours
+  description: Allocated GPU accelerator time (T4g through B200), metered per second.
+  unit: gpu_hours
+  aggregation: sum
+  dimensions:
+  - tenant
+  - project
+  - domain
+  - task
+  - gpu_type
+- name: platform_fee
+  description: Fixed monthly Team-plan platform fee (includes an applied usage credit).
+  unit: subscription
+  aggregation: sum
+  dimensions:
+  - tenant
+principles:
+- name: Visibility
+  description: Pull Union usage reporting per project/domain/workflow; in BYOC also reconcile raw cloud-compute cost on your own cloud bill.
+- name: Allocation
+  description: Tag projects and domains to cost centers; allocate action and resource-hour spend per workflow/team.
+- name: Optimization
+  description: Right-size task requests (CPU/Memory/GPU), pick the smallest sufficient GPU, use Actors to amortize warm containers, and avoid over-allocating resources that bill per second.
+- name: Accountability
+  description: Assign owners per project; review action counts and GPU-hour burn monthly against budget; negotiate Enterprise volume discounts at scale.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

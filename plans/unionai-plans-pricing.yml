@@ -1,0 +1,160 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Union.ai
+providerId: unionai
+created: '2026-06-20'
+modified: '2026-06-20'
+reconciled: false
+tags:
+- AI
+- ML
+- Orchestration
+- Workflows
+- Serverless
+- Plans
+description: >-
+  Union.ai is the commercial platform built on the open-source Flyte project
+  (Apache-2.0, free to self-host). Union itself does not sell raw compute; it
+  bills usage-based pricing for the orchestration plus the action-allocated
+  CPU / Memory / GPU resources each workflow uses, metered per second, never
+  for idle capacity. The Serverless / Team plan is pay-as-you-go with a free
+  trial credit; Enterprise (including BYOC and self-hosted) is sales-led with
+  custom, negotiated pricing. Specific rates change frequently and many
+  enterprise terms are not published, so this artifact is not reconciled.
+notes: >-
+  Representative rates as observed on the Union.ai pricing page; verify current
+  per-second resource rates, action pricing, and plan structure on the page at
+  reconciliation. Flyte (flyte.org) is open-source under Apache-2.0 and free to
+  run yourself; the pricing below applies to the managed Union platform only.
+sources:
+- https://www.union.ai/pricing
+- https://www.union.ai/blog-post/introducing-union-serverless
+- https://flyte.org
+plans:
+- id: unionai-flyte-oss
+  name: Flyte (Open Source)
+  type: free
+  description: >-
+    The open-source Flyte orchestration engine - FlyteAdmin control plane,
+    FlytePropeller, Flytekit SDK, and the union/pyflyte CLI - self-hosted on
+    your own Kubernetes cluster. Apache-2.0 licensed, no license fee; you pay
+    only your own infrastructure costs.
+  entries:
+  - label: Flyte Open Source (Apache-2.0)
+    name: flyte_oss
+    type: free
+    metric: license
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0 (Apache-2.0, self-hosted infra costs only)
+    userMultiplied: false
+  elements:
+  - name: FlyteAdmin Control Plane
+  - name: Workflows / Tasks / Launch Plans / Executions
+  - name: Flytekit SDK + pyflyte CLI
+- id: unionai-serverless-team
+  name: Serverless / Team (Pay-as-you-go)
+  type: usage
+  description: >-
+    Fully-managed Union Serverless / Team plan. Pay-as-you-go: usage is billed
+    as a combination of actions and the action-allocated resources (CPU,
+    Memory, GPU accelerator) reported from each running container, metered down
+    to the second. New accounts start with a free trial compute credit.
+  entries:
+  - label: Free Trial Compute Credit
+    name: free_trial_credit
+    type: free
+    metric: credit
+    limit: 1
+    timeFrame: signup
+    geo: global
+    unit: 1
+    price: $30 free compute on signup, no credit card (GPU access included)
+    userMultiplied: false
+  - label: Action
+    name: action
+    type: usage
+    metric: actions
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: ~$0.0075 per action
+    userMultiplied: false
+  - label: vCPU
+    name: cpu
+    type: usage
+    metric: vcpu_hours
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: ~$0.0417 per vCPU-hour (billed per second)
+    userMultiplied: false
+  - label: Memory
+    name: memory
+    type: usage
+    metric: gb_hours
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: ~$0.0051 per GB-hour (billed per second)
+    userMultiplied: false
+  - label: GPU Accelerator
+    name: gpu
+    type: usage
+    metric: gpu_hours
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: ~$0.1516-$2.8483 per GPU-hour (T4g through B200, billed per second)
+    userMultiplied: false
+  - label: Team Plan Platform Fee
+    name: team_platform_fee
+    type: flat
+    metric: subscription
+    limit: 1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: ~$950/month (includes a usage credit applied against the above)
+    userMultiplied: false
+  elements:
+  - name: Union Serverless
+  - name: FlyteAdmin Control Plane (managed)
+  - name: Actors
+  - name: Artifacts
+  - name: GPU Compute
+- id: unionai-enterprise-byoc
+  name: Enterprise / BYOC
+  type: enterprise
+  description: >-
+    Bring-your-own-cloud (Union manages resources inside your VPC on AWS / GCP /
+    Azure / neo-clouds) and self-hosted (on-prem, hybrid, airgapped) control
+    plane deployments. Higher concurrency, longer data retention, multiple
+    clusters, Zero Trust security, custom SSO, and white-glove support.
+    Sales-led, custom-priced with volume discounts.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales (custom, volume-discounted)
+    userMultiplied: false
+  elements:
+  - name: BYOC (Union-managed in your VPC)
+  - name: Self-Hosted Control Plane (on-prem / hybrid / airgapped)
+  - name: Custom Concurrency & Data Retention
+  - name: Zero Trust Security & Custom SSO
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

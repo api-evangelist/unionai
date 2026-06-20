@@ -1,0 +1,212 @@
+aid: unionai
+url: https://raw.githubusercontent.com/api-evangelist/unionai/refs/heads/main/apis.yml
+name: Union.ai
+kind: company
+description: Union.ai is the commercial AI/ML orchestration platform built on the
+  open-source Flyte project. It exposes the Flyte/Union control plane (the FlyteAdmin
+  service) for registering and running strongly-typed workflows, tasks, and launch
+  plans, plus Union Serverless, Actors, and Artifacts. The control plane is primarily
+  a gRPC API (FlyteIDL AdminService) with an auto-generated HTTP/JSON gateway exposed
+  under /api/v1/, driven by the union / pyflyte CLI and Flytekit / Union SDKs.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- AI
+- ML
+- Orchestration
+- Workflows
+- MLOps
+- Flyte
+- Serverless
+created: '2026-06-20'
+modified: '2026-06-20'
+specificationVersion: '0.19'
+apis:
+- aid: unionai:flyteadmin-projects-api
+  name: Union FlyteAdmin Projects API
+  tags:
+  - Projects
+  - Domains
+  - Control Plane
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.union.ai/docs/flyte/api-reference/
+  baseURL: https://<your-org>.app.union.ai/api/v1
+  properties:
+  - url: https://www.union.ai/docs/flyte/user-guide/core-concepts/projects-and-domains/
+    type: Documentation
+  - url: https://www.union.ai/docs/flyte/api-reference/
+    type: APIReference
+  - url: openapi/unionai-openapi.yml
+    type: OpenAPI
+  - url: collections/unionai.postman_collection.json
+    type: PostmanCollection
+  - url: collections/unionai.opencollection.json
+    type: OpenCollection
+  - url: https://github.com/unionai
+    type: GitHub
+  description: Create, update, list, and get Projects and the Domains scoped within
+    them - the top-level logical grouping for workflows, tasks, launch plans, and
+    executions. gRPC (FlyteIDL AdminService) with an HTTP/JSON gateway under /api/v1/projects.
+- aid: unionai:flyteadmin-workflows-api
+  name: Union FlyteAdmin Workflows API
+  tags:
+  - Workflows
+  - Registration
+  - Control Plane
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.union.ai/docs/flyte/api-reference/
+  baseURL: https://<your-org>.app.union.ai/api/v1
+  properties:
+  - url: https://www.union.ai/docs/flyte/user-guide/core-concepts/workflows/
+    type: Documentation
+  - url: https://www.union.ai/docs/flyte/api-reference/
+    type: APIReference
+  - url: openapi/unionai-openapi.yml
+    type: OpenAPI
+  - url: collections/unionai.postman_collection.json
+    type: PostmanCollection
+  - url: collections/unionai.opencollection.json
+    type: OpenCollection
+  - url: https://github.com/unionai
+    type: GitHub
+  description: Register, list, and retrieve versioned Workflows - the compiled DAGs
+    of tasks. Served over gRPC with an HTTP/JSON gateway under /api/v1/workflows and
+    /api/v1/workflow_ids.
+- aid: unionai:flyteadmin-tasks-api
+  name: Union FlyteAdmin Tasks API
+  tags:
+  - Tasks
+  - Registration
+  - Control Plane
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.union.ai/docs/flyte/api-reference/
+  baseURL: https://<your-org>.app.union.ai/api/v1
+  properties:
+  - url: https://www.union.ai/docs/flyte/user-guide/core-concepts/tasks/
+    type: Documentation
+  - url: https://www.union.ai/docs/flyte/api-reference/
+    type: APIReference
+  - url: openapi/unionai-openapi.yml
+    type: OpenAPI
+  - url: collections/unionai.postman_collection.json
+    type: PostmanCollection
+  - url: collections/unionai.opencollection.json
+    type: OpenCollection
+  - url: https://github.com/unionai
+    type: GitHub
+  description: Register, list, and retrieve versioned Tasks - the strongly-typed units
+    of work that compose workflows. gRPC AdminService with an HTTP/JSON gateway under
+    /api/v1/tasks and /api/v1/task_ids.
+- aid: unionai:flyteadmin-launch-plans-api
+  name: Union FlyteAdmin Launch Plans API
+  tags:
+  - Launch Plans
+  - Schedules
+  - Control Plane
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.union.ai/docs/flyte/api-reference/
+  baseURL: https://<your-org>.app.union.ai/api/v1
+  properties:
+  - url: https://www.union.ai/docs/flyte/user-guide/core-concepts/launch-plans/
+    type: Documentation
+  - url: https://www.union.ai/docs/flyte/api-reference/
+    type: APIReference
+  - url: openapi/unionai-openapi.yml
+    type: OpenAPI
+  - url: collections/unionai.postman_collection.json
+    type: PostmanCollection
+  - url: collections/unionai.opencollection.json
+    type: OpenCollection
+  - url: https://github.com/unionai
+    type: GitHub
+  description: Create, list, retrieve, and activate/deactivate Launch Plans - the bindable,
+    schedulable entry points that wrap a workflow with inputs, schedules, and notifications.
+    HTTP/JSON gateway under /api/v1/launch_plans and /api/v1/active_launch_plans.
+- aid: unionai:flyteadmin-executions-api
+  name: Union FlyteAdmin Executions API
+  tags:
+  - Executions
+  - Runs
+  - Control Plane
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.union.ai/docs/flyte/api-reference/
+  baseURL: https://<your-org>.app.union.ai/api/v1
+  properties:
+  - url: https://www.union.ai/docs/flyte/user-guide/development-cycle/remote-management/remote-examples/
+    type: Documentation
+  - url: https://www.union.ai/docs/flyte/api-reference/
+    type: APIReference
+  - url: openapi/unionai-openapi.yml
+    type: OpenAPI
+  - url: collections/unionai.postman_collection.json
+    type: PostmanCollection
+  - url: collections/unionai.opencollection.json
+    type: OpenCollection
+  - url: https://github.com/unionai
+    type: GitHub
+  description: Launch, relaunch, recover, list, get, terminate, and inspect Workflow
+    Executions, plus their Node Executions and Task Executions and associated I/O data.
+    HTTP/JSON gateway under /api/v1/executions, /api/v1/node_executions, and /api/v1/task_executions.
+- aid: unionai:union-serverless
+  name: Union Serverless
+  tags:
+  - Serverless
+  - Compute
+  - Pay-as-you-go
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.union.ai/docs/serverless/
+  baseURL: https://serverless.union.ai/api/v1
+  properties:
+  - url: https://www.union.ai/blog-post/introducing-union-serverless
+    type: Documentation
+  - url: https://www.union.ai/docs/serverless/api-reference/union-sdk/
+    type: APIReference
+  - url: openapi/unionai-openapi.yml
+    type: OpenAPI
+  - url: https://github.com/unionai
+    type: GitHub
+  description: The fully-managed, pay-as-you-go Union control plane and compute. Same
+    FlyteAdmin control-plane surface (gRPC + HTTP/JSON gateway) accessed through the
+    union CLI and Union SDK, billed per action and per second of allocated CPU / Memory
+    / GPU.
+- aid: unionai:union-cli-sdk
+  name: Union CLI & SDK
+  tags:
+  - CLI
+  - SDK
+  - Flytekit
+  - pyflyte
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.union.ai/docs/flyte/api-reference/
+  baseURL: https://<your-org>.app.union.ai/api/v1
+  properties:
+  - url: https://www.union.ai/docs/serverless/api-reference/union-sdk/
+    type: Documentation
+  - url: https://www.union.ai/docs/flyte/api-reference/pyflyte-cli/
+    type: APIReference
+  - url: https://www.union.ai/docs/byoc/api-reference/union-cli/
+    type: APIReference
+  - url: https://github.com/unionai
+    type: GitHub
+  description: The union and pyflyte command-line tools plus the Flytekit and Union
+    Python SDKs - the primary, fully-documented clients that register entities and
+    drive the FlyteAdmin control plane (including Actors and Artifacts) over gRPC.
+common:
+- type: GitHubOrganization
+  url: https://github.com/unionai
+- type: GitHubOrganization
+  url: https://github.com/flyteorg
+- type: LinkedIn
+  url: https://www.linkedin.com/company/unionai
+- type: Website
+  url: https://www.union.ai
+- type: Documentation
+  url: https://www.union.ai/docs
+- type: Plans
+  url: plans/unionai-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/unionai-rate-limits.yml
+- type: FinOps
+  url: finops/unionai-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
