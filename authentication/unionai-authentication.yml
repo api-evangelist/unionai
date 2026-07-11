@@ -1,0 +1,33 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/unionai-openapi.yml
+summary:
+  types:
+  - http
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+  - clientCredentials
+schemes:
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://{org}.app.union.ai/oauth2/authorize
+    tokenUrl: https://{org}.app.union.ai/oauth2/token
+    scopes: 1
+  - flow: clientCredentials
+    tokenUrl: https://{org}.app.union.ai/oauth2/token
+    scopes: 1
+  description: FlyteAdmin secures client connections with OAuth2. Interactive CLI/UI clients
+    use the Authorization Code + PKCE flow; machine clients use the Client Credentials flow.
+    User authentication to the console is via OpenID Connect. Tokens are presented as a Bearer
+    access token.
+  sources:
+  - openapi/unionai-openapi.yml
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  sources:
+  - openapi/unionai-openapi.yml

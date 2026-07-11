@@ -191,6 +191,10 @@ apis:
     Python SDKs - the primary, fully-documented clients that register entities and
     drive the FlyteAdmin control plane (including Actors and Artifacts) over gRPC.
 common:
+- type: TrustCenter
+  url: security/unionai-trust-center.yml
+- type: DomainSecurity
+  url: security/unionai-domain-security.yml
 - type: Authentication
   url: authentication/unionai-authentication.yml
 - type: OAuthScopes
