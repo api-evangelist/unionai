@@ -1,0 +1,103 @@
+openapi: 3.0.1
+info:
+  title: Union FlyteAdmin Control Plane API (HTTP/JSON Gateway) Domains Node Executions API
+  description: Conservative model of the documented HTTP/JSON gateway exposed by the Union.ai / Flyte control plane (the FlyteIDL AdminService). The control plane is primarily a gRPC service; an HTTP/JSON REST gateway is generated automatically with grpc-gateway, mapping each gRPC method to an HTTP endpoint under /api/v1/. Paths and methods below are taken from the public FlyteIDL admin service google.api.http annotations. Request/response bodies are modeled loosely (object) because the gRPC<->JSON mapping of the full protobuf message tree is large and not maintained as a hand-authored OpenAPI contract by the vendor.
+  termsOfService: https://www.union.ai/legal/terms-of-service
+  contact:
+    name: Union.ai
+    url: https://www.union.ai/contact
+  license:
+    name: Apache 2.0 (Flyte / FlyteIDL)
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://{org}.app.union.ai
+  description: Union BYOC / managed control plane (replace {org} with your tenant).
+  variables:
+    org:
+      default: your-org
+- url: https://serverless.union.ai
+  description: Union Serverless control plane.
+security:
+- OAuth2:
+  - all
+- BearerAuth: []
+tags:
+- name: Node Executions
+paths:
+  /api/v1/node_executions/{project}/{domain}/{name}:
+    get:
+      operationId: listNodeExecutions
+      tags:
+      - Node Executions
+      summary: List the node executions for a workflow execution.
+      parameters:
+      - $ref: '#/components/parameters/PathProject'
+      - $ref: '#/components/parameters/PathDomain'
+      - $ref: '#/components/parameters/PathName'
+      - $ref: '#/components/parameters/Limit'
+      - $ref: '#/components/parameters/Token'
+      responses:
+        '200':
+          $ref: '#/components/responses/OK'
+components:
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+      description: Maximum number of results to return for this page.
+    Token:
+      name: token
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Opaque pagination token returned by the previous page.
+    PathName:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    PathProject:
+      name: project
+      in: path
+      required: true
+      schema:
+        type: string
+    PathDomain:
+      name: domain
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    OK:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            description: JSON projection of the corresponding FlyteIDL protobuf response message.
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: FlyteAdmin secures client connections with OAuth2. Interactive CLI/UI clients use the Authorization Code + PKCE flow; machine clients use the Client Credentials flow. User authentication to the console is via OpenID Connect. Tokens are presented as a Bearer access token.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://{org}.app.union.ai/oauth2/authorize
+          tokenUrl: https://{org}.app.union.ai/oauth2/token
+          scopes:
+            all: Full control-plane access.
+        clientCredentials:
+          tokenUrl: https://{org}.app.union.ai/oauth2/token
+          scopes:
+            all: Full control-plane access.
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

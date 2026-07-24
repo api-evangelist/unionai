@@ -1,0 +1,63 @@
+openapi: 3.0.1
+info:
+  title: Union FlyteAdmin Control Plane API (HTTP/JSON Gateway) Domains Version API
+  description: Conservative model of the documented HTTP/JSON gateway exposed by the Union.ai / Flyte control plane (the FlyteIDL AdminService). The control plane is primarily a gRPC service; an HTTP/JSON REST gateway is generated automatically with grpc-gateway, mapping each gRPC method to an HTTP endpoint under /api/v1/. Paths and methods below are taken from the public FlyteIDL admin service google.api.http annotations. Request/response bodies are modeled loosely (object) because the gRPC<->JSON mapping of the full protobuf message tree is large and not maintained as a hand-authored OpenAPI contract by the vendor.
+  termsOfService: https://www.union.ai/legal/terms-of-service
+  contact:
+    name: Union.ai
+    url: https://www.union.ai/contact
+  license:
+    name: Apache 2.0 (Flyte / FlyteIDL)
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  version: '1.0'
+servers:
+- url: https://{org}.app.union.ai
+  description: Union BYOC / managed control plane (replace {org} with your tenant).
+  variables:
+    org:
+      default: your-org
+- url: https://serverless.union.ai
+  description: Union Serverless control plane.
+security:
+- OAuth2:
+  - all
+- BearerAuth: []
+tags:
+- name: Version
+paths:
+  /api/v1/version:
+    get:
+      operationId: getVersion
+      tags:
+      - Version
+      summary: Get the FlyteAdmin control plane version.
+      responses:
+        '200':
+          $ref: '#/components/responses/OK'
+components:
+  responses:
+    OK:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            description: JSON projection of the corresponding FlyteIDL protobuf response message.
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: FlyteAdmin secures client connections with OAuth2. Interactive CLI/UI clients use the Authorization Code + PKCE flow; machine clients use the Client Credentials flow. User authentication to the console is via OpenID Connect. Tokens are presented as a Bearer access token.
+      flows:
+        authorizationCode:
+          authorizationUrl: https://{org}.app.union.ai/oauth2/authorize
+          tokenUrl: https://{org}.app.union.ai/oauth2/token
+          scopes:
+            all: Full control-plane access.
+        clientCredentials:
+          tokenUrl: https://{org}.app.union.ai/oauth2/token
+          scopes:
+            all: Full control-plane access.
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
