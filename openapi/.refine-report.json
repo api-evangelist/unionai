@@ -1,0 +1,28 @@
+{
+  "provider": "unionai",
+  "sources": [
+    "unionai-domains-api-openapi.yml",
+    "unionai-executions-api-openapi.yml",
+    "unionai-launch-plans-api-openapi.yml",
+    "unionai-node-executions-api-openapi.yml",
+    "unionai-projects-api-openapi.yml",
+    "unionai-tasks-api-openapi.yml",
+    "unionai-version-api-openapi.yml",
+    "unionai-workflows-api-openapi.yml"
+  ],
+  "outputs": [
+    "unionai-domains-api-openapi.yml",
+    "unionai-executions-api-openapi.yml",
+    "unionai-launch-plans-api-openapi.yml",
+    "unionai-node-executions-api-openapi.yml",
+    "unionai-projects-api-openapi.yml",
+    "unionai-tasks-api-openapi.yml",
+    "unionai-version-api-openapi.yml",
+    "unionai-workflows-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
