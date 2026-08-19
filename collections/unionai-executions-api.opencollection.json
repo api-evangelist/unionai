@@ -1,0 +1,231 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Union FlyteAdmin Control Plane API (HTTP/JSON Gateway) Domains Executions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://{org}.app.union.ai/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Executions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Launch a workflow execution from a launch plan.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{org}.app.union.ai/api/v1/executions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Launch a workflow execution from a launch plan."
+        },
+        {
+          "info": {
+            "name": "Relaunch a previously created execution.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{org}.app.union.ai/api/v1/executions/relaunch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Relaunch a previously created execution."
+        },
+        {
+          "info": {
+            "name": "Recover a failed execution from the last known successful point.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{org}.app.union.ai/api/v1/executions/recover",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Recover a failed execution from the last known successful point."
+        },
+        {
+          "info": {
+            "name": "List executions in a project/domain.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{org}.app.union.ai/api/v1/executions/:project/:domain",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return for this page."
+              },
+              {
+                "name": "token",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination token returned by the previous page."
+              },
+              {
+                "name": "filters",
+                "value": "",
+                "type": "query",
+                "description": "FlyteAdmin filter expression (e.g. eq(execution.phase,RUNNING))."
+              }
+            ]
+          },
+          "docs": "List executions in a project/domain."
+        },
+        {
+          "info": {
+            "name": "Get a single workflow execution.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{org}.app.union.ai/api/v1/executions/:project/:domain/:name",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a single workflow execution."
+        },
+        {
+          "info": {
+            "name": "Update execution metadata (e.g. state).",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{org}.app.union.ai/api/v1/executions/:project/:domain/:name",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update execution metadata (e.g. state)."
+        },
+        {
+          "info": {
+            "name": "Terminate a running execution.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{org}.app.union.ai/api/v1/executions/:project/:domain/:name",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Terminate a running execution."
+        },
+        {
+          "info": {
+            "name": "Get input/output data URLs for an execution.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{org}.app.union.ai/api/v1/data/executions/:project/:domain/:name",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get input/output data URLs for an execution."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

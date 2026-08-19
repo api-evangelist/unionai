@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Union FlyteAdmin Control Plane API (HTTP/JSON Gateway) Domains Node Executions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://{org}.app.union.ai/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Node Executions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List the node executions for a workflow execution.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{org}.app.union.ai/api/v1/node_executions/:project/:domain/:name",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return for this page."
+              },
+              {
+                "name": "token",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination token returned by the previous page."
+              }
+            ]
+          },
+          "docs": "List the node executions for a workflow execution."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

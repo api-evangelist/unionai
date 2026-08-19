@@ -1,0 +1,224 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Union FlyteAdmin Control Plane API (HTTP/JSON Gateway) Domains Launch Plans API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://{org}.app.union.ai/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Launch Plans",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a versioned launch plan.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{org}.app.union.ai/api/v1/launch_plans",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a versioned launch plan."
+        },
+        {
+          "info": {
+            "name": "List launch plan names in a project/domain.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{org}.app.union.ai/api/v1/launch_plan_ids/:project/:domain",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return for this page."
+              },
+              {
+                "name": "token",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination token returned by the previous page."
+              }
+            ]
+          },
+          "docs": "List launch plan names in a project/domain."
+        },
+        {
+          "info": {
+            "name": "List versions of a launch plan.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{org}.app.union.ai/api/v1/launch_plans/:project/:domain/:name",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return for this page."
+              },
+              {
+                "name": "token",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination token returned by the previous page."
+              }
+            ]
+          },
+          "docs": "List versions of a launch plan."
+        },
+        {
+          "info": {
+            "name": "Get a single versioned launch plan.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{org}.app.union.ai/api/v1/launch_plans/:project/:domain/:name/:version",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a single versioned launch plan."
+        },
+        {
+          "info": {
+            "name": "Update a launch plan's state (ACTIVE / INACTIVE) to schedule it.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{org}.app.union.ai/api/v1/launch_plans/:project/:domain/:name/:version",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a launch plan's state (ACTIVE / INACTIVE) to schedule it."
+        },
+        {
+          "info": {
+            "name": "List the active (scheduled) launch plans in a project/domain.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{org}.app.union.ai/api/v1/active_launch_plans/:project/:domain",
+            "params": [
+              {
+                "name": "project",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return for this page."
+              },
+              {
+                "name": "token",
+                "value": "",
+                "type": "query",
+                "description": "Opaque pagination token returned by the previous page."
+              }
+            ]
+          },
+          "docs": "List the active (scheduled) launch plans in a project/domain."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
