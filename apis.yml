@@ -32,7 +32,7 @@ tags:
 - Serverless
 created: '2026-06-20'
 modified: '2026-06-20'
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: unionai:union-cli-sdk
   name: Union CLI & SDK
