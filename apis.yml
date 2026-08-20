@@ -23,6 +23,14 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/unionai.png
 tags:
+- Artificial Intelligence
+- ML
+- Orchestration
+- Workflows
+- MLOps
+- Flyte
+- Serverless
+tags_raw:
 - AI
 - ML
 - Orchestration
@@ -96,6 +104,8 @@ apis:
   humanURL: https://www.union.ai/docs/flyte/api-reference/
   baseURL: https://<your-org>.app.union.ai/api/v1
   tags:
+  - Execution
+  tags_raw:
   - Executions
   properties:
   - type: OpenAPI
@@ -195,6 +205,8 @@ apis:
   humanURL: https://www.union.ai/docs/flyte/api-reference/
   baseURL: https://<your-org>.app.union.ai/api/v1
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
@@ -228,6 +240,8 @@ apis:
   humanURL: https://www.union.ai/docs/flyte/api-reference/
   baseURL: https://<your-org>.app.union.ai/api/v1
   tags:
+  - Task
+  tags_raw:
   - Tasks
   properties:
   - type: OpenAPI
