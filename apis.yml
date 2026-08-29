@@ -8,6 +8,18 @@ description: Union.ai is the commercial AI/ML orchestration platform built on th
   plans, plus Union Serverless, Actors, and Artifacts. The control plane is primarily
   a gRPC API (FlyteIDL AdminService) with an auto-generated HTTP/JSON gateway exposed
   under /api/v1/, driven by the union / pyflyte CLI and Flytekit / Union SDKs.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
