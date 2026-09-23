@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Union FlyteAdmin Control Plane API (HTTP/JSON Gateway) Domains API
-  description: Conservative model of the documented HTTP/JSON gateway exposed by the Union.ai / Flyte control plane (the FlyteIDL AdminService). The control plane is primarily a gRPC service; an HTTP/JSON REST gateway is generated automatically with grpc-gateway, mapping each gRPC method to an HTTP endpoint under /api/v1/. Paths and methods below are taken from the public FlyteIDL admin service google.api.http annotations. Request/response bodies are modeled loosely (object) because the gRPC<->JSON mapping of the full protobuf message tree is large and not maintained as a hand-authored OpenAPI contract by the vendor.
+  title: Union FlyteAdmin Control Plane API (HTTP/JSON Gateway)…
+  description: Conservative model of the documented HTTP/JSON gateway exposed by the Union.ai / Flyte control plane (the FlyteIDL AdminService).
   termsOfService: https://www.union.ai/legal/terms-of-service
   contact:
     name: Union.ai
@@ -30,7 +30,7 @@ paths:
       operationId: listDomains
       tags:
       - Domains
-      summary: List the domains (e.g. development, staging, production).
+      summary: List the domains (e.g. development, staging, production)
       responses:
         '200':
           $ref: '#/components/responses/OK'

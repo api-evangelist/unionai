@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Union FlyteAdmin Control Plane API (HTTP/JSON Gateway) Domains Executions API
-  description: Conservative model of the documented HTTP/JSON gateway exposed by the Union.ai / Flyte control plane (the FlyteIDL AdminService). The control plane is primarily a gRPC service; an HTTP/JSON REST gateway is generated automatically with grpc-gateway, mapping each gRPC method to an HTTP endpoint under /api/v1/. Paths and methods below are taken from the public FlyteIDL admin service google.api.http annotations. Request/response bodies are modeled loosely (object) because the gRPC<->JSON mapping of the full protobuf message tree is large and not maintained as a hand-authored OpenAPI contract by the vendor.
+  title: Union FlyteAdmin Control Plane API (HTTP/JSON Gateway)…
+  description: Conservative model of the documented HTTP/JSON gateway exposed by the Union.ai / Flyte control plane (the FlyteIDL AdminService).
   termsOfService: https://www.union.ai/legal/terms-of-service
   contact:
     name: Union.ai
@@ -30,7 +30,7 @@ paths:
       operationId: createExecution
       tags:
       - Executions
-      summary: Launch a workflow execution from a launch plan.
+      summary: Launch a workflow execution from a launch plan
       requestBody:
         $ref: '#/components/requestBodies/Generic'
       responses:
@@ -41,7 +41,7 @@ paths:
       operationId: relaunchExecution
       tags:
       - Executions
-      summary: Relaunch a previously created execution.
+      summary: Relaunch a previously created execution
       requestBody:
         $ref: '#/components/requestBodies/Generic'
       responses:
@@ -52,7 +52,7 @@ paths:
       operationId: recoverExecution
       tags:
       - Executions
-      summary: Recover a failed execution from the last known successful point.
+      summary: Recover a failed execution from the last known successful point
       requestBody:
         $ref: '#/components/requestBodies/Generic'
       responses:
@@ -63,7 +63,7 @@ paths:
       operationId: listExecutions
       tags:
       - Executions
-      summary: List executions in a project/domain.
+      summary: List executions in a project/domain
       parameters:
       - $ref: '#/components/parameters/PathProject'
       - $ref: '#/components/parameters/PathDomain'
@@ -78,7 +78,7 @@ paths:
       operationId: getExecution
       tags:
       - Executions
-      summary: Get a single workflow execution.
+      summary: Get a single workflow execution
       parameters:
       - $ref: '#/components/parameters/PathProject'
       - $ref: '#/components/parameters/PathDomain'
@@ -90,7 +90,7 @@ paths:
       operationId: updateExecution
       tags:
       - Executions
-      summary: Update execution metadata (e.g. state).
+      summary: Update execution metadata (e.g. state)
       parameters:
       - $ref: '#/components/parameters/PathProject'
       - $ref: '#/components/parameters/PathDomain'
@@ -104,7 +104,7 @@ paths:
       operationId: terminateExecution
       tags:
       - Executions
-      summary: Terminate a running execution.
+      summary: Terminate a running execution
       parameters:
       - $ref: '#/components/parameters/PathProject'
       - $ref: '#/components/parameters/PathDomain'
@@ -117,7 +117,7 @@ paths:
       operationId: getExecutionData
       tags:
       - Executions
-      summary: Get input/output data URLs for an execution.
+      summary: Get input/output data URLs for an execution
       parameters:
       - $ref: '#/components/parameters/PathProject'
       - $ref: '#/components/parameters/PathDomain'
@@ -127,21 +127,12 @@ paths:
           $ref: '#/components/responses/OK'
 components:
   parameters:
-    Limit:
-      name: limit
-      in: query
-      required: false
-      schema:
-        type: integer
-        format: int32
-      description: Maximum number of results to return for this page.
-    Token:
-      name: token
-      in: query
-      required: false
+    PathDomain:
+      name: domain
+      in: path
+      required: true
       schema:
         type: string
-      description: Opaque pagination token returned by the previous page.
     PathName:
       name: name
       in: path
@@ -155,18 +146,27 @@ components:
       schema:
         type: string
       description: FlyteAdmin filter expression (e.g. eq(execution.phase,RUNNING)).
+    Token:
+      name: token
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Opaque pagination token returned by the previous page.
     PathProject:
       name: project
       in: path
       required: true
       schema:
         type: string
-    PathDomain:
-      name: domain
-      in: path
-      required: true
+    Limit:
+      name: limit
+      in: query
+      required: false
       schema:
-        type: string
+        type: integer
+        format: int32
+      description: Maximum number of results to return for this page.
   requestBodies:
     Generic:
       required: true

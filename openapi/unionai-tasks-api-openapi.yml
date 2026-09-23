@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Union FlyteAdmin Control Plane API (HTTP/JSON Gateway) Domains Tasks API
-  description: Conservative model of the documented HTTP/JSON gateway exposed by the Union.ai / Flyte control plane (the FlyteIDL AdminService). The control plane is primarily a gRPC service; an HTTP/JSON REST gateway is generated automatically with grpc-gateway, mapping each gRPC method to an HTTP endpoint under /api/v1/. Paths and methods below are taken from the public FlyteIDL admin service google.api.http annotations. Request/response bodies are modeled loosely (object) because the gRPC<->JSON mapping of the full protobuf message tree is large and not maintained as a hand-authored OpenAPI contract by the vendor.
+  title: Union FlyteAdmin Control Plane API (HTTP/JSON Gateway)…
+  description: Conservative model of the documented HTTP/JSON gateway exposed by the Union.ai / Flyte control plane (the FlyteIDL AdminService).
   termsOfService: https://www.union.ai/legal/terms-of-service
   contact:
     name: Union.ai
@@ -30,7 +30,7 @@ paths:
       operationId: createTask
       tags:
       - Tasks
-      summary: Register a versioned task.
+      summary: Register a versioned task
       requestBody:
         $ref: '#/components/requestBodies/Generic'
       responses:
@@ -41,7 +41,7 @@ paths:
       operationId: listTaskIds
       tags:
       - Tasks
-      summary: List task names (identifiers) in a project/domain.
+      summary: List task names (identifiers) in a project/domain
       parameters:
       - $ref: '#/components/parameters/PathProject'
       - $ref: '#/components/parameters/PathDomain'
@@ -55,7 +55,7 @@ paths:
       operationId: listTasks
       tags:
       - Tasks
-      summary: List versions of a task.
+      summary: List versions of a task
       parameters:
       - $ref: '#/components/parameters/PathProject'
       - $ref: '#/components/parameters/PathDomain'
@@ -70,7 +70,7 @@ paths:
       operationId: getTask
       tags:
       - Tasks
-      summary: Get a single versioned task.
+      summary: Get a single versioned task
       parameters:
       - $ref: '#/components/parameters/PathProject'
       - $ref: '#/components/parameters/PathDomain'
@@ -81,8 +81,33 @@ paths:
           $ref: '#/components/responses/OK'
 components:
   parameters:
+    PathDomain:
+      name: domain
+      in: path
+      required: true
+      schema:
+        type: string
+    PathName:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    Token:
+      name: token
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Opaque pagination token returned by the previous page.
     PathVersion:
       name: version
+      in: path
+      required: true
+      schema:
+        type: string
+    PathProject:
+      name: project
       in: path
       required: true
       schema:
@@ -95,31 +120,6 @@ components:
         type: integer
         format: int32
       description: Maximum number of results to return for this page.
-    Token:
-      name: token
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Opaque pagination token returned by the previous page.
-    PathName:
-      name: name
-      in: path
-      required: true
-      schema:
-        type: string
-    PathProject:
-      name: project
-      in: path
-      required: true
-      schema:
-        type: string
-    PathDomain:
-      name: domain
-      in: path
-      required: true
-      schema:
-        type: string
   requestBodies:
     Generic:
       required: true

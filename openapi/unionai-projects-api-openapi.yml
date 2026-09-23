@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Union FlyteAdmin Control Plane API (HTTP/JSON Gateway) Domains Projects API
-  description: Conservative model of the documented HTTP/JSON gateway exposed by the Union.ai / Flyte control plane (the FlyteIDL AdminService). The control plane is primarily a gRPC service; an HTTP/JSON REST gateway is generated automatically with grpc-gateway, mapping each gRPC method to an HTTP endpoint under /api/v1/. Paths and methods below are taken from the public FlyteIDL admin service google.api.http annotations. Request/response bodies are modeled loosely (object) because the gRPC<->JSON mapping of the full protobuf message tree is large and not maintained as a hand-authored OpenAPI contract by the vendor.
+  title: Union FlyteAdmin Control Plane API (HTTP/JSON Gateway)…
+  description: Conservative model of the documented HTTP/JSON gateway exposed by the Union.ai / Flyte control plane (the FlyteIDL AdminService).
   termsOfService: https://www.union.ai/legal/terms-of-service
   contact:
     name: Union.ai
@@ -30,7 +30,7 @@ paths:
       operationId: listProjects
       tags:
       - Projects
-      summary: List registered projects.
+      summary: List registered projects
       parameters:
       - $ref: '#/components/parameters/Limit'
       - $ref: '#/components/parameters/Token'
@@ -43,7 +43,7 @@ paths:
       operationId: registerProject
       tags:
       - Projects
-      summary: Register a new project.
+      summary: Register a new project
       requestBody:
         $ref: '#/components/requestBodies/Generic'
       responses:
@@ -54,7 +54,7 @@ paths:
       operationId: getProject
       tags:
       - Projects
-      summary: Get a single project by id.
+      summary: Get a single project by id
       parameters:
       - name: id
         in: path
@@ -68,7 +68,7 @@ paths:
       operationId: updateProject
       tags:
       - Projects
-      summary: Update an existing project.
+      summary: Update an existing project
       parameters:
       - name: id
         in: path
@@ -89,14 +89,6 @@ components:
       schema:
         type: string
       description: Field key to sort the result set by.
-    Limit:
-      name: limit
-      in: query
-      required: false
-      schema:
-        type: integer
-        format: int32
-      description: Maximum number of results to return for this page.
     Filters:
       name: filters
       in: query
@@ -111,6 +103,14 @@ components:
       schema:
         type: string
       description: Opaque pagination token returned by the previous page.
+    Limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+      description: Maximum number of results to return for this page.
   requestBodies:
     Generic:
       required: true
