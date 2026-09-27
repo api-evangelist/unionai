@@ -42,12 +42,6 @@ paths:
           $ref: '#/components/responses/OK'
 components:
   parameters:
-    PathDomain:
-      name: domain
-      in: path
-      required: true
-      schema:
-        type: string
     PathName:
       name: name
       in: path
@@ -75,6 +69,12 @@ components:
         type: integer
         format: int32
       description: Maximum number of results to return for this page.
+    PathDomain:
+      name: domain
+      in: path
+      required: true
+      schema:
+        type: string
   responses:
     OK:
       description: OK
