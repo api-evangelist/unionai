@@ -42,8 +42,22 @@ paths:
           $ref: '#/components/responses/OK'
 components:
   parameters:
+    Limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+      description: Maximum number of results to return for this page.
     PathName:
       name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    PathDomain:
+      name: domain
       in: path
       required: true
       schema:
@@ -57,20 +71,6 @@ components:
       description: Opaque pagination token returned by the previous page.
     PathProject:
       name: project
-      in: path
-      required: true
-      schema:
-        type: string
-    Limit:
-      name: limit
-      in: query
-      required: false
-      schema:
-        type: integer
-        format: int32
-      description: Maximum number of results to return for this page.
-    PathDomain:
-      name: domain
       in: path
       required: true
       schema:
