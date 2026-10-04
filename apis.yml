@@ -349,6 +349,9 @@ apis:
   - type: APIReference
     url: https://www.union.ai/docs/serverless/api-reference/union-sdk/
 common:
+- type: CapabilityMap
+  url: capabilities/unionai-capability-edges.yml
+  name: Union.ai Business Capability Map
 - type: AgenticAccess
   url: agentic-access/unionai-agentic-access.yml
 - type: TrustCenter

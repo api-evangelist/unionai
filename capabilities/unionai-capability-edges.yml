@@ -1,0 +1,38 @@
+slug: unionai
+provider: Union.ai
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Executions
+  spec_file: unionai-executions-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.7
+  evidence: POST /api/v1/executions "Launch a workflow execution from a launch plan"; POST /api/v1/executions/recover
+    "Recover a failed execution from the last known successful point"
+  reason: Union.ai is an AI/ML orchestration control plane; these operations launch, relaunch, recover,
+    terminate and inspect data for ML workflow executions, which is MLOps pipeline operation. Mapped to
+    Artificial Intelligence Management; not fully 0.95 because the surface is a generic workflow orchestrator
+    whose runs could serve non-ML pipelines too.
+- tag: Launch Plans
+  spec_file: unionai-launch-plans-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.7
+  evidence: POST /api/v1/launch_plans "Create a versioned launch plan"; PUT ... "Update a launch plan's
+    state (ACTIVE / INACTIVE) to schedule it"
+  reason: Launch plans are versioned, schedulable entry points for Flyte/Union ML workflows, so the tag
+    realises ML pipeline lifecycle and scheduling (MLOps) on this AI/ML orchestration platform. Moderate-high
+    confidence; the orchestrator is generic enough that a pure workflow-automation reading is possible.
