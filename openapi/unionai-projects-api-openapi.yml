@@ -97,13 +97,6 @@ components:
         type: integer
         format: int32
       description: Maximum number of results to return for this page.
-    SortBy:
-      name: sort_by.key
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Field key to sort the result set by.
     Token:
       name: token
       in: query
@@ -111,14 +104,13 @@ components:
       schema:
         type: string
       description: Opaque pagination token returned by the previous page.
-  requestBodies:
-    Generic:
-      required: true
-      content:
-        application/json:
-          schema:
-            type: object
-            description: JSON projection of the corresponding FlyteIDL protobuf request message. See the FlyteIDL admin protos for the exact field tree.
+    SortBy:
+      name: sort_by.key
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Field key to sort the result set by.
   responses:
     OK:
       description: OK
@@ -127,6 +119,14 @@ components:
           schema:
             type: object
             description: JSON projection of the corresponding FlyteIDL protobuf response message.
+  requestBodies:
+    Generic:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            description: JSON projection of the corresponding FlyteIDL protobuf request message. See the FlyteIDL admin protos for the exact field tree.
   securitySchemes:
     OAuth2:
       type: oauth2

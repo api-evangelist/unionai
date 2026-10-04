@@ -41,27 +41,15 @@ paths:
         '200':
           $ref: '#/components/responses/OK'
 components:
+  responses:
+    OK:
+      description: OK
+      content:
+        application/json:
+          schema:
+            type: object
+            description: JSON projection of the corresponding FlyteIDL protobuf response message.
   parameters:
-    Limit:
-      name: limit
-      in: query
-      required: false
-      schema:
-        type: integer
-        format: int32
-      description: Maximum number of results to return for this page.
-    PathName:
-      name: name
-      in: path
-      required: true
-      schema:
-        type: string
-    PathDomain:
-      name: domain
-      in: path
-      required: true
-      schema:
-        type: string
     Token:
       name: token
       in: query
@@ -75,14 +63,26 @@ components:
       required: true
       schema:
         type: string
-  responses:
-    OK:
-      description: OK
-      content:
-        application/json:
-          schema:
-            type: object
-            description: JSON projection of the corresponding FlyteIDL protobuf response message.
+    PathDomain:
+      name: domain
+      in: path
+      required: true
+      schema:
+        type: string
+    PathName:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    Limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+      description: Maximum number of results to return for this page.
   securitySchemes:
     OAuth2:
       type: oauth2

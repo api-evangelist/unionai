@@ -134,26 +134,6 @@ components:
       schema:
         type: string
       description: FlyteAdmin filter expression (e.g. eq(execution.phase,RUNNING)).
-    Limit:
-      name: limit
-      in: query
-      required: false
-      schema:
-        type: integer
-        format: int32
-      description: Maximum number of results to return for this page.
-    PathName:
-      name: name
-      in: path
-      required: true
-      schema:
-        type: string
-    PathDomain:
-      name: domain
-      in: path
-      required: true
-      schema:
-        type: string
     Token:
       name: token
       in: query
@@ -167,14 +147,26 @@ components:
       required: true
       schema:
         type: string
-  requestBodies:
-    Generic:
+    PathDomain:
+      name: domain
+      in: path
       required: true
-      content:
-        application/json:
-          schema:
-            type: object
-            description: JSON projection of the corresponding FlyteIDL protobuf request message. See the FlyteIDL admin protos for the exact field tree.
+      schema:
+        type: string
+    PathName:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    Limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+      description: Maximum number of results to return for this page.
   responses:
     OK:
       description: OK
@@ -183,6 +175,14 @@ components:
           schema:
             type: object
             description: JSON projection of the corresponding FlyteIDL protobuf response message.
+  requestBodies:
+    Generic:
+      required: true
+      content:
+        application/json:
+          schema:
+            type: object
+            description: JSON projection of the corresponding FlyteIDL protobuf request message. See the FlyteIDL admin protos for the exact field tree.
   securitySchemes:
     OAuth2:
       type: oauth2
