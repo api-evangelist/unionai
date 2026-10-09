@@ -1,160 +1,176 @@
-specification: API Commons Plans
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
-provider: Union.ai
-providerId: unionai
-created: '2026-06-20'
-modified: '2026-06-20'
-reconciled: false
-tags:
-- AI
-- ML
-- Orchestration
-- Workflows
-- Serverless
-- Plans
-description: >-
-  Union.ai is the commercial platform built on the open-source Flyte project
-  (Apache-2.0, free to self-host). Union itself does not sell raw compute; it
-  bills usage-based pricing for the orchestration plus the action-allocated
-  CPU / Memory / GPU resources each workflow uses, metered per second, never
-  for idle capacity. The Serverless / Team plan is pay-as-you-go with a free
-  trial credit; Enterprise (including BYOC and self-hosted) is sales-led with
-  custom, negotiated pricing. Specific rates change frequently and many
-  enterprise terms are not published, so this artifact is not reconciled.
-notes: >-
-  Representative rates as observed on the Union.ai pricing page; verify current
-  per-second resource rates, action pricing, and plan structure on the page at
-  reconciliation. Flyte (flyte.org) is open-source under Apache-2.0 and free to
-  run yourself; the pricing below applies to the managed Union platform only.
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://www.union.ai/pricing
 sources:
 - https://www.union.ai/pricing
-- https://www.union.ai/blog-post/introducing-union-serverless
-- https://flyte.org
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T112025
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: per-call
+delivery:
+  delivery: managed+licensed
+  method: page
+  read: '2026-10-07'
+  evidence: Do you offer a self-hosted control plane as a deployment option? Yes, this is one of the deployment
+    options available as part of a Union Enterprise plan.
+  managed_tier: Team
+published: true
+note: Team plan with published volume-band rate card for actions, vCPU, memory, GPU; Enterprise custom.
+  Self-managed deployment carries no fee; self-hosted control plane offered under Enterprise plan.
+plan_count: 9
+currency: USD
 plans:
-- id: unionai-flyte-oss
-  name: Flyte (Open Source)
-  type: free
-  description: >-
-    The open-source Flyte orchestration engine - FlyteAdmin control plane,
-    FlytePropeller, Flytekit SDK, and the union/pyflyte CLI - self-hosted on
-    your own Kubernetes cluster. Apache-2.0 licensed, no license fee; you pay
-    only your own infrastructure costs.
-  entries:
-  - label: Flyte Open Source (Apache-2.0)
-    name: flyte_oss
-    type: free
-    metric: license
-    limit: -1
-    timeFrame: month
-    geo: global
-    unit: 1
-    price: $0 (Apache-2.0, self-hosted infra costs only)
-    userMultiplied: false
-  elements:
-  - name: FlyteAdmin Control Plane
-  - name: Workflows / Tasks / Launch Plans / Executions
-  - name: Flytekit SDK + pyflyte CLI
-- id: unionai-serverless-team
-  name: Serverless / Team (Pay-as-you-go)
-  type: usage
-  description: >-
-    Fully-managed Union Serverless / Team plan. Pay-as-you-go: usage is billed
-    as a combination of actions and the action-allocated resources (CPU,
-    Memory, GPU accelerator) reported from each running container, metered down
-    to the second. New accounts start with a free trial compute credit.
-  entries:
-  - label: Free Trial Compute Credit
-    name: free_trial_credit
-    type: free
-    metric: credit
-    limit: 1
-    timeFrame: signup
-    geo: global
-    unit: 1
-    price: $30 free compute on signup, no credit card (GPU access included)
-    userMultiplied: false
-  - label: Action
-    name: action
-    type: usage
-    metric: actions
-    limit: -1
-    timeFrame: month
-    geo: global
-    unit: 1
-    price: ~$0.0075 per action
-    userMultiplied: false
-  - label: vCPU
-    name: cpu
-    type: usage
-    metric: vcpu_hours
-    limit: -1
-    timeFrame: month
-    geo: global
-    unit: 1
-    price: ~$0.0417 per vCPU-hour (billed per second)
-    userMultiplied: false
-  - label: Memory
-    name: memory
-    type: usage
-    metric: gb_hours
-    limit: -1
-    timeFrame: month
-    geo: global
-    unit: 1
-    price: ~$0.0051 per GB-hour (billed per second)
-    userMultiplied: false
-  - label: GPU Accelerator
-    name: gpu
-    type: usage
-    metric: gpu_hours
-    limit: -1
-    timeFrame: month
-    geo: global
-    unit: 1
-    price: ~$0.1516-$2.8483 per GPU-hour (T4g through B200, billed per second)
-    userMultiplied: false
-  - label: Team Plan Platform Fee
-    name: team_platform_fee
-    type: flat
-    metric: subscription
-    limit: 1
-    timeFrame: month
-    geo: global
-    unit: 1
-    price: ~$950/month (includes a usage credit applied against the above)
-    userMultiplied: false
-  elements:
-  - name: Union Serverless
-  - name: FlyteAdmin Control Plane (managed)
-  - name: Actors
-  - name: Artifacts
-  - name: GPU Compute
-- id: unionai-enterprise-byoc
-  name: Enterprise / BYOC
-  type: enterprise
-  description: >-
-    Bring-your-own-cloud (Union manages resources inside your VPC on AWS / GCP /
-    Azure / neo-clouds) and self-hosted (on-prem, hybrid, airgapped) control
-    plane deployments. Higher concurrency, longer data retention, multiple
-    clusters, Zero Trust security, custom SSO, and white-glove support.
-    Sales-led, custom-priced with volume discounts.
-  entries:
-  - label: Enterprise Agreement
-    name: enterprise
-    type: flat
-    metric: contract
-    limit: -1
-    timeFrame: year
-    geo: global
-    unit: 1
-    price: contact sales (custom, volume-discounted)
-    userMultiplied: false
-  elements:
-  - name: BYOC (Union-managed in your VPC)
-  - name: Self-Hosted Control Plane (on-prem / hybrid / airgapped)
-  - name: Custom Concurrency & Data Retention
-  - name: Zero Trust Security & Custom SSO
-maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+- name: Team
+  price_text: $950 / mo + usage
+  price: 950
+  currency: USD
+  period: month
+  unit: plan
+  included_quota: 1,000 concurrent actions, 30-day data retention, 1 cluster, $950 monthly usage credit
+  overage: Usage beyond credited amount billed per rate card
+- name: Enterprise
+  price_text: Custom
+  period: none
+  included_quota: Custom concurrent actions, 1 year retention, 3+ clusters, white-glove support
+  overage: Custom on commit
+- name: Managed deployment (BYOC)
+  price_text: $2,500 per environment / month
+  price: 2500
+  currency: USD
+  period: month
+  unit: environment
+  included_quota: Union hosts control plane and runs data plane in your cloud; optional
+- name: Actions 0 – 100k actions / mo
+  price_text: $0.0030
+  price: 0.003
+  currency: USD
+  period: per-use
+  unit: per action
+  overage: 100k–1M $0.0015; 1M–10M $0.00075; 10M+ $0.0003
+- name: vCPU 0 – 100k vCPU-hrs / mo
+  price_text: $0.0288
+  price: 0.0288
+  currency: USD
+  period: per-use
+  unit: per vCPU-hour
+  overage: 100k–1M $0.0216; 1M+ $0.0162
+- name: Memory 0 – 600k GB-hrs / mo
+  price_text: $0.0040
+  price: 0.004
+  currency: USD
+  period: per-use
+  unit: per GB-hour
+  overage: 600k–6M $0.0029; 6M+ $0.0022
+- name: GPU Class 1 (0 – 1k hrs / mo)
+  price_text: $0.12
+  price: 0.12
+  currency: USD
+  period: per-use
+  unit: per GPU-hour
+  included_quota: T4, T4g, L4, Inferentia2, TPU v5e, Trainium1
+  overage: 1k–10k $0.10; 10k+ $0.08
+- name: GPU Class 2 (0 – 1k hrs / mo)
+  price_text: $0.38
+  price: 0.38
+  currency: USD
+  period: per-use
+  unit: per GPU-hour
+  included_quota: A10G, L40S, V100, A100, RTX PRO 6000, Trainium2, TPU v6e, TPU v5p
+  overage: 1k–10k $0.32; 10k+ $0.26
+- name: GPU Class 3 (0 – 1k hrs / mo)
+  price_text: $1.20
+  price: 1.2
+  currency: USD
+  period: per-use
+  unit: per GPU-hour
+  included_quota: H100, H200, B200, B300
+  overage: 1k–10k $1.00; 10k+ $0.80
+rate_limit_statements:
+- 1,000 concurrent actions
+- Actions / run (fanout) 25,000
+- Clusters 1
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - metered
+  units:
+  - compute
+  - data
+  - object
+  plans:
+  - name: Team
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Enterprise
+    access: other
+    model: metered
+    model_how: derived
+    units: []
+    periods:
+    - none
+  - name: Managed deployment (BYOC)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Actions 0 – 100k actions / mo
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: vCPU 0 – 100k vCPU-hrs / mo
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
+  - name: Memory 0 – 600k GB-hrs / mo
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - data
+    periods:
+    - other
+  - name: GPU Class 1 (0 – 1k hrs / mo)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
+  - name: GPU Class 2 (0 – 1k hrs / mo)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
+  - name: GPU Class 3 (0 – 1k hrs / mo)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - compute
+    periods:
+    - other
