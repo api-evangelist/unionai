@@ -81,36 +81,6 @@ paths:
         '200':
           $ref: '#/components/responses/OK'
 components:
-  parameters:
-    Filters:
-      name: filters
-      in: query
-      required: false
-      schema:
-        type: string
-      description: FlyteAdmin filter expression (e.g. eq(execution.phase,RUNNING)).
-    Limit:
-      name: limit
-      in: query
-      required: false
-      schema:
-        type: integer
-        format: int32
-      description: Maximum number of results to return for this page.
-    Token:
-      name: token
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Opaque pagination token returned by the previous page.
-    SortBy:
-      name: sort_by.key
-      in: query
-      required: false
-      schema:
-        type: string
-      description: Field key to sort the result set by.
   responses:
     OK:
       description: OK
@@ -119,6 +89,36 @@ components:
           schema:
             type: object
             description: JSON projection of the corresponding FlyteIDL protobuf response message.
+  parameters:
+    SortBy:
+      name: sort_by.key
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Field key to sort the result set by.
+    Filters:
+      name: filters
+      in: query
+      required: false
+      schema:
+        type: string
+      description: FlyteAdmin filter expression (e.g. eq(execution.phase,RUNNING)).
+    Token:
+      name: token
+      in: query
+      required: false
+      schema:
+        type: string
+      description: Opaque pagination token returned by the previous page.
+    Limit:
+      name: limit
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+      description: Maximum number of results to return for this page.
   requestBodies:
     Generic:
       required: true

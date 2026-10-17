@@ -81,8 +81,26 @@ paths:
           $ref: '#/components/responses/OK'
 components:
   parameters:
+    PathName:
+      name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    PathProject:
+      name: project
+      in: path
+      required: true
+      schema:
+        type: string
     PathVersion:
       name: version
+      in: path
+      required: true
+      schema:
+        type: string
+    PathDomain:
+      name: domain
       in: path
       required: true
       schema:
@@ -94,24 +112,6 @@ components:
       schema:
         type: string
       description: Opaque pagination token returned by the previous page.
-    PathProject:
-      name: project
-      in: path
-      required: true
-      schema:
-        type: string
-    PathDomain:
-      name: domain
-      in: path
-      required: true
-      schema:
-        type: string
-    PathName:
-      name: name
-      in: path
-      required: true
-      schema:
-        type: string
     Limit:
       name: limit
       in: query

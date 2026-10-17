@@ -50,13 +50,12 @@ components:
             type: object
             description: JSON projection of the corresponding FlyteIDL protobuf response message.
   parameters:
-    Token:
-      name: token
-      in: query
-      required: false
+    PathName:
+      name: name
+      in: path
+      required: true
       schema:
         type: string
-      description: Opaque pagination token returned by the previous page.
     PathProject:
       name: project
       in: path
@@ -69,12 +68,13 @@ components:
       required: true
       schema:
         type: string
-    PathName:
-      name: name
-      in: path
-      required: true
+    Token:
+      name: token
+      in: query
+      required: false
       schema:
         type: string
+      description: Opaque pagination token returned by the previous page.
     Limit:
       name: limit
       in: query
