@@ -1,4 +1,4 @@
-# Union.ai (unionai)
+# Union.ai
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,188 +66,138 @@
 
 Union.ai is the commercial AI/ML orchestration platform built on the open-source Flyte project. It exposes the Flyte/Union control plane (the FlyteAdmin service) for registering and running strongly-typed workflows, tasks, and launch plans, plus Union Serverless, Actors, and Artifacts. The control plane is primarily a gRPC API (FlyteIDL AdminService) with an auto-generated HTTP/JSON gateway exposed under /api/v1/, driven by the union / pyflyte CLI and Flytekit / Union SDKs.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/unionai/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/unionai/refs/heads/main/apis.yml)
+**Areas:** Artificial Intelligence · Machine Learning · Orchestration · Workflows · MLOps · Flyte · Serverless
 
-## Tags
+## Union.ai on APIs.io
 
-- AI
-- ML
-- Orchestration
-- Workflows
-- MLOps
-- Flyte
-- Serverless
+Everything profiled for Union.ai is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/unionai/](https://apis.io/providers/unionai/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (9)
 
-- **Created:** 2026-06-20
-- **Modified:** 2026-06-20
+- [Union CLI & SDK](https://apis.io/apis/unionai/union-cli-sdk/) — The union and pyflyte command-line tools plus the Flytekit and Union Python SDKs - the primary, fully-documented clients that register entities and drive…
+- [Union.ai Domains API](https://apis.io/apis/unionai/unionai-domains-api/) — The Domains API from Union.ai — 1 operation(s) for domains.
+- [Union.ai Executions API](https://apis.io/apis/unionai/unionai-executions-api/) — The Executions API from Union.ai — 6 operation(s) for executions.
+- [Union.ai Launch Plans API](https://apis.io/apis/unionai/unionai-launch-plans-api/) — The Launch Plans API from Union.ai — 5 operation(s) for launch plans.
+- [Union.ai Node Executions API](https://apis.io/apis/unionai/unionai-node-executions-api/) — The Node Executions API from Union.ai — 1 operation(s) for node executions.
+- [Union.ai Projects API](https://apis.io/apis/unionai/unionai-projects-api/) — The Projects API from Union.ai — 2 operation(s) for projects.
+- [Union.ai Tasks API](https://apis.io/apis/unionai/unionai-tasks-api/) — The Tasks API from Union.ai — 4 operation(s) for tasks.
+- [Union.ai Version API](https://apis.io/apis/unionai/unionai-version-api/) — The Version API from Union.ai — 1 operation(s) for version.
+- [Union.ai Workflows API](https://apis.io/apis/unionai/unionai-workflows-api/) — The Workflows API from Union.ai — 4 operation(s) for workflows.
 
-## APIs
+### Published properties
 
-### Union FlyteAdmin Projects API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Create, update, list, and get Projects and the Domains scoped within them - the top-level logical grouping for workflows, tasks, launch plans, and executions. gRPC (FlyteIDL AdminService) with an HTTP/JSON gateway under /api/v1/projects.
+#### Agentic access (1)
 
-- **Human URL:** [https://www.union.ai/docs/flyte/api-reference/](https://www.union.ai/docs/flyte/api-reference/)
-- **Base URL:** `https://<your-org>.app.union.ai/api/v1`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [Unionai Agentic Access](https://apis.io/agentic-access/unionai/unionai-agentic-access/)
 
-- Projects
-- Domains
-- Control Plane
+#### Collections (9)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://www.union.ai/docs/flyte/user-guide/core-concepts/projects-and-domains/)
-- [API Reference](https://www.union.ai/docs/flyte/api-reference/)
-- [OpenAPI](openapi/unionai-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/unionai.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/unionai.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [GitHub](https://github.com/unionai)
+- [Union FlyteAdmin Control Plane API (HTTP/JSON Gateway)](https://apis.io/collections/unionai/open-unionai/)
+- [Union FlyteAdmin Control Plane API (HTTP/JSON Gateway) Domains API](https://apis.io/collections/unionai/open-unionai-domains-api/)
+- [Union FlyteAdmin Control Plane API (HTTP/JSON Gateway) Domains Executions API](https://apis.io/collections/unionai/open-unionai-executions-api/)
+- [Union FlyteAdmin Control Plane API (HTTP/JSON Gateway) Domains Launch Plans API](https://apis.io/collections/unionai/open-unionai-launch-plans-api/)
+- [Union FlyteAdmin Control Plane API (HTTP/JSON Gateway) Domains Node Executions API](https://apis.io/collections/unionai/open-unionai-node-executions-api/)
+- [Union FlyteAdmin Control Plane API (HTTP/JSON Gateway) Domains Projects API](https://apis.io/collections/unionai/open-unionai-projects-api/)
+- [Union FlyteAdmin Control Plane API (HTTP/JSON Gateway) Domains Tasks API](https://apis.io/collections/unionai/open-unionai-tasks-api/)
+- [Union FlyteAdmin Control Plane API (HTTP/JSON Gateway) Domains Version API](https://apis.io/collections/unionai/open-unionai-version-api/)
+- [Union FlyteAdmin Control Plane API (HTTP/JSON Gateway) Domains Workflows API](https://apis.io/collections/unionai/open-unionai-workflows-api/)
 
-### Union FlyteAdmin Workflows API
+#### Security (3)
 
-Register, list, and retrieve versioned Workflows - the compiled DAGs of tasks. Served over gRPC with an HTTP/JSON gateway under /api/v1/workflows and /api/v1/workflow_ids.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://www.union.ai/docs/flyte/api-reference/](https://www.union.ai/docs/flyte/api-reference/)
-- **Base URL:** `https://<your-org>.app.union.ai/api/v1`
+- [Unionai Authentication](https://apis.io/security/unionai/unionai-authentication/)
+- [Unionai Domain Security](https://apis.io/security/unionai/unionai-domain-security/)
+- [Unionai Trust Center](https://apis.io/security/unionai/unionai-trust-center/)
 
-#### Tags
+#### OAuth scopes (1)
 
-- Workflows
-- Registration
-- Control Plane
+The permissions the API asks for.
 
-#### Properties
+- [Unionai Scopes](https://apis.io/scopes/unionai/unionai-scopes/)
 
-- [Documentation](https://www.union.ai/docs/flyte/user-guide/core-concepts/workflows/)
-- [API Reference](https://www.union.ai/docs/flyte/api-reference/)
-- [OpenAPI](openapi/unionai-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/unionai.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/unionai.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [GitHub](https://github.com/unionai)
+#### Plans and pricing (1)
 
-### Union FlyteAdmin Tasks API
+Published plans, tiers and prices.
 
-Register, list, and retrieve versioned Tasks - the strongly-typed units of work that compose workflows. gRPC AdminService with an HTTP/JSON gateway under /api/v1/tasks and /api/v1/task_ids.
+- [Unionai Plans Pricing](https://apis.io/plans/unionai/unionai-plans-pricing/)
 
-- **Human URL:** [https://www.union.ai/docs/flyte/api-reference/](https://www.union.ai/docs/flyte/api-reference/)
-- **Base URL:** `https://<your-org>.app.union.ai/api/v1`
+#### Rate limits (1)
 
-#### Tags
+Published request limits.
 
-- Tasks
-- Registration
-- Control Plane
+- [Unionai Rate Limits](https://apis.io/rate-limits/unionai/unionai-rate-limits/)
 
-#### Properties
+#### FinOps (1)
 
-- [Documentation](https://www.union.ai/docs/flyte/user-guide/core-concepts/tasks/)
-- [API Reference](https://www.union.ai/docs/flyte/api-reference/)
-- [OpenAPI](openapi/unionai-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/unionai.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/unionai.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [GitHub](https://github.com/unionai)
+What the API costs to run, by operation.
 
-### Union FlyteAdmin Launch Plans API
+- [Unionai Finops](https://apis.io/finops/unionai/unionai-finops/)
 
-Create, list, retrieve, and activate/deactivate Launch Plans - the bindable, schedulable entry points that wrap a workflow with inputs, schedules, and notifications. HTTP/JSON gateway under /api/v1/launch_plans and /api/v1/active_launch_plans.
+## Where to find this API
 
-- **Human URL:** [https://www.union.ai/docs/flyte/api-reference/](https://www.union.ai/docs/flyte/api-reference/)
-- **Base URL:** `https://<your-org>.app.union.ai/api/v1`
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-#### Tags
-
-- Launch Plans
-- Schedules
-- Control Plane
-
-#### Properties
-
-- [Documentation](https://www.union.ai/docs/flyte/user-guide/core-concepts/launch-plans/)
-- [API Reference](https://www.union.ai/docs/flyte/api-reference/)
-- [OpenAPI](openapi/unionai-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/unionai.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/unionai.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [GitHub](https://github.com/unionai)
-
-### Union FlyteAdmin Executions API
-
-Launch, relaunch, recover, list, get, terminate, and inspect Workflow Executions, plus their Node Executions and Task Executions and associated I/O data. HTTP/JSON gateway under /api/v1/executions, /api/v1/node_executions, and /api/v1/task_executions.
-
-- **Human URL:** [https://www.union.ai/docs/flyte/api-reference/](https://www.union.ai/docs/flyte/api-reference/)
-- **Base URL:** `https://<your-org>.app.union.ai/api/v1`
-
-#### Tags
-
-- Executions
-- Runs
-- Control Plane
-
-#### Properties
-
-- [Documentation](https://www.union.ai/docs/flyte/user-guide/development-cycle/remote-management/remote-examples/)
-- [API Reference](https://www.union.ai/docs/flyte/api-reference/)
-- [OpenAPI](openapi/unionai-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/unionai.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/unionai.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [GitHub](https://github.com/unionai)
-
-### Union Serverless
-
-The fully-managed, pay-as-you-go Union control plane and compute. Same FlyteAdmin control-plane surface (gRPC + HTTP/JSON gateway) accessed through the union CLI and Union SDK, billed per action and per second of allocated CPU / Memory / GPU.
-
-- **Human URL:** [https://www.union.ai/docs/serverless/](https://www.union.ai/docs/serverless/)
-- **Base URL:** `https://serverless.union.ai/api/v1`
-
-#### Tags
-
-- Serverless
-- Compute
-- Pay-as-you-go
-
-#### Properties
-
-- [Documentation](https://www.union.ai/blog-post/introducing-union-serverless)
-- [API Reference](https://www.union.ai/docs/serverless/api-reference/union-sdk/)
-- [OpenAPI](openapi/unionai-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [GitHub](https://github.com/unionai)
-
-### Union CLI & SDK
-
-The union and pyflyte command-line tools plus the Flytekit and Union Python SDKs - the primary, fully-documented clients that register entities and drive the FlyteAdmin control plane (including Actors and Artifacts) over gRPC.
-
-- **Human URL:** [https://www.union.ai/docs/flyte/api-reference/](https://www.union.ai/docs/flyte/api-reference/)
-- **Base URL:** `https://<your-org>.app.union.ai/api/v1`
-
-#### Tags
-
-- CLI
-- SDK
-- Flytekit
-- pyflyte
-
-#### Properties
-
-- [Documentation](https://www.union.ai/docs/serverless/api-reference/union-sdk/)
-- [API Reference](https://www.union.ai/docs/flyte/api-reference/pyflyte-cli/)
-- [API Reference](https://www.union.ai/docs/byoc/api-reference/union-cli/)
-- [GitHub](https://github.com/unionai)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/unionai)
-- [GitHub Organization](https://github.com/flyteorg)
-- [LinkedIn](https://www.linkedin.com/company/unionai)
 - [Website](https://www.union.ai)
 - [Documentation](https://www.union.ai/docs)
-- [Plans](plans/unionai-plans-pricing.yml)
-- [Rate Limits](rate-limits/unionai-rate-limits.yml)
-- [Fin Ops](finops/unionai-finops.yml)
+- [Pricing](https://www.union.ai/pricing)
+- [GitHub](https://github.com/unionai)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 35.0** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 45.6 |
+| Contract governance | 0.0 |
+| Operational transparency | 2.6 |
+| Developer ergonomics | 29.8 |
+| Access clarity | 50.0 |
+
+**Agent readiness 24.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | documented (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/unionai/](https://apis.io/providers/unionai/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Union.ai: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/unionai/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
